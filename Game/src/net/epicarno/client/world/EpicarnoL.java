@@ -184,7 +184,7 @@ int[] TopBlock = EpicarnoComp.deco.GetBiomeDecorations(BiomeID, 1);
                if (this.block[x][y].id == EpicarnoTiles.bedrock) {
                  break;
                }
-               this.block[x][y].id = EpicarnoTiles.air;
+               
                
                if (this.block[x][(y - 1)].id != EpicarnoTiles.wildgrass) {
                    
@@ -197,7 +197,7 @@ int[] TopBlock = EpicarnoComp.deco.GetBiomeDecorations(BiomeID, 1);
                }else{
                this.block[x][(y - 1)].id = EpicarnoTiles.air;
                }
-               
+               this.block[x][y].id = EpicarnoTiles.air;
                break;
              }
 if(sid == EpicarnoTiles.Player){
@@ -246,6 +246,7 @@ if( ((this.block[x][(y + 1)].id  != EpicarnoTiles.air) || (this.block[x][(y - 1)
            }
          }
        }
+       
      }
    }
    
@@ -253,6 +254,7 @@ if( ((this.block[x][(y + 1)].id  != EpicarnoTiles.air) || (this.block[x][(y - 1)
    {
      if (!Inventory.isOpen) {
        building(camX, camY, renW, renH);
+       //break;
      }
    }
    
