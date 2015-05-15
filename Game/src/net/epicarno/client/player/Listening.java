@@ -1,4 +1,4 @@
-/*   1:    */ package net.epicarno.client;
+/*   1:    */ package net.epicarno.client.player;
 /*   2:    */ 
 /*   3:    */ import java.awt.Point;
 /*   4:    */ import java.awt.event.KeyEvent;
@@ -8,6 +8,9 @@
 /*   8:    */ import java.awt.event.MouseMotionListener;
 /*   9:    */ import java.awt.event.MouseWheelEvent;
 /*  10:    */ import java.awt.event.MouseWheelListener;
+
+import net.epicarno.client.EpicarnoComp;
+import net.epicarno.client.generic.EpicarnoTiles;
 /*  11:    */ 
 /*  12:    */ public class Listening
 /*  13:    */   implements KeyListener, MouseListener, MouseMotionListener, MouseWheelListener

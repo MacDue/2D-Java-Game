@@ -1,7 +1,9 @@
-package net.epicarno.client;
+package net.epicarno.client.generic;
 
 import java.awt.Color;
 import java.awt.Graphics;
+
+import net.epicarno.client.EpicarnoComp;
 
 public class Info {
 	public Info(){

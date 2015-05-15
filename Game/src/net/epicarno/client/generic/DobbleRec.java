@@ -1,4 +1,4 @@
-/*  1:   */ package net.epicarno.client;
+/*  1:   */ package net.epicarno.client.generic;
 /*  2:   */ 
 /*  3:   */ public class DobbleRec
 /*  4:   */ {

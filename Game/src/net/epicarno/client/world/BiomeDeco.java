@@ -1,4 +1,6 @@
-package net.epicarno.client;
+package net.epicarno.client.world;
+
+import net.epicarno.client.generic.EpicarnoTiles;
 
 public class BiomeDeco {
 	

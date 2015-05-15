@@ -18,6 +18,19 @@ import java.awt.image.VolatileImage;
 /*   8:    */ import java.util.ArrayList;
 
 import javax.swing.JFrame;
+
+import net.epicarno.client.generic.EpicarnoTiles;
+import net.epicarno.client.generic.Info;
+import net.epicarno.client.mobs.Mob;
+import net.epicarno.client.mobs.Spawner;
+import net.epicarno.client.player.Cell;
+import net.epicarno.client.player.InvItems;
+import net.epicarno.client.player.Inventory;
+import net.epicarno.client.player.Listening;
+import net.epicarno.client.player.Player;
+import net.epicarno.client.world.BiomeDeco;
+import net.epicarno.client.world.EpicarnoL;
+import net.epicarno.client.world.Sky;
 /*  10:    */ 
 /*  11:    */ public class EpicarnoComp
 /*  12:    */   extends Applet
