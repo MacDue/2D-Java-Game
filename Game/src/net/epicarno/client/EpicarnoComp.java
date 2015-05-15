@@ -45,7 +45,7 @@ public static int dr= 0;
 /*  19: 14 */   public static double sY = moveFronBorder;
 /*  20: 15 */   public static double dir = 0.5D;
 /*  21:    */   public static Dimension realSize;
-/*  22: 18 */   public static Dimension size = new Dimension(800, 600);
+/*  22: 18 */   public static Dimension size = new Dimension(1224, 768);
 /*  23: 19 */   public static Dimension pixel = new Dimension(size.width / pixelSize, size.height / pixelSize);
 /*  24: 21 */   public static Point mse = new Point(0, 0);
 /*  25: 23 */   public static String name = "Ben Maxwell Test Java Project";
@@ -95,6 +95,7 @@ invent = new Inventory();
 
 /*  58: 59 */     spawner = new Spawner();
 player = null;
+sp=true;
 /*  59:    */     
 /*  60:    */ 
 /*  61: 62 */     isRunning = true;
@@ -122,7 +123,7 @@ player = null;
 frame.addComponentListener(new ComponentListener() {
     public void componentResized(ComponentEvent e) {
     	//player.y = 50.0D;
-    	  System.out.println(frame.getWidth());
+    	//  System.out.println(frame.getWidth());
     	  //renderBar();
     	  redoBar = true;
     //	  redoplay = true;
@@ -173,7 +174,7 @@ int height = (int) screenSize.getHeight();
 //frame.setSize(width,height);
 
 /*  80: 81 */     frame.setTitle(name);
-/*  81: 82 */     frame.setResizable(true);
+/*  81: 82 */     frame.setResizable(false);
 /*  82: 83 */     frame.setLocationRelativeTo(null);
 /*  83: 84 */     frame.setDefaultCloseOperation(3);
 /*  84: 85 */     frame.setVisible(true);

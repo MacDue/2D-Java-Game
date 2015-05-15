@@ -17,7 +17,7 @@ import net.epicarno.client.generic.TileProperties;
    public int HipdieHopCount = 0;
    public int anima = 0;
    public int animaFrame = 0;
-   public int animaTime = 60;
+   public int animaTime = 20;
    public boolean isHipideHopping = false;
    
    public Player(int width, int height)
@@ -39,6 +39,23 @@ public void redo(int width, int height){
      {
        this.y += this.fallingspeed;
       EpicarnoComp.sY += this.fallingspeed;
+      if (this.animaFrame >= this.animaTime)
+      {
+   	   EpicarnoTiles.Player[1] = 7;
+   	   animaTime = 20;
+        if (this.anima >= 10) {
+          this.anima = 0;
+        } else {
+          this.anima += 1;
+        }
+        this.animaFrame = 0;
+      }
+      else
+      {
+   	   
+        this.animaFrame += 1;
+       // System.out.println(this.anima);
+      }
      }
      else if ((EpicarnoComp.isHipideHopping) && (!Inventory.isOpen))
      {
@@ -54,8 +71,10 @@ public void redo(int width, int height){
        }
        if (this.animaFrame >= this.animaTime)
        {
-         if (this.anima > 1) {
-           this.anima = 1;
+    	   EpicarnoTiles.Player[1] = 1;
+    	   animaTime = 20;
+         if (this.anima >= 4) {
+           this.anima = 0;
          } else {
            this.anima += 1;
          }
@@ -63,8 +82,11 @@ public void redo(int width, int height){
        }
        else
        {
+    	   
          this.animaFrame += 1;
+        // System.out.println(this.anima);
        }
+       
        if (!canMove)
        {
          this.x += EpicarnoComp.dir;
@@ -74,7 +96,25 @@ public void redo(int width, int height){
      }
      else
      {
-       this.anima = 0;
+      // this.anima = 0;
+    	 EpicarnoTiles.Player[1] = 3;
+    	   animaTime = 35;
+       if (this.animaFrame >= this.animaTime)
+       {
+         if (this.anima >= 11) {
+           this.anima = 0;
+         } else {
+           this.anima += 1;
+         }
+         this.animaFrame = 0;
+       }
+       else
+       {
+    	   
+         this.animaFrame += 1;
+        // System.out.println(this.anima);
+       }
+       
      }
      if (this.isHipideHopping) {
        if (!isCollidingWithBlock(new Point((int)(this.x + 2.0D), (int)this.y), new Point((int)(this.x + this.width - 2.0D), (int)this.y)))

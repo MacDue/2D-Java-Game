@@ -48,6 +48,9 @@ Temporary Items
 .settings/
 .metadata/
 .metadata\
+.metadata
+.recommenders\
+.recommenders
 # Intellij
 .idea/
 *.iml

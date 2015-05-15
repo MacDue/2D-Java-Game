@@ -35,7 +35,7 @@ public class InvItems {
 		      invBagItems[0].id = EpicarnoTiles.shittybricks;
 		      invBagItems[1].id = EpicarnoTiles.ob;
 		      invBagItems[2].id = EpicarnoTiles.Zombie;
-		      invBagItems[3].id = EpicarnoTiles.Player;
+		      invBagItems[3].id = EpicarnoTiles.rose;
 		      invBagItems[4].id = EpicarnoTiles.Skeleton;
 		      invBagItems[5].id = EpicarnoTiles.stone;
 		      invBagItems[6].id = EpicarnoTiles.leaf;

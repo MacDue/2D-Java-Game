@@ -2,20 +2,20 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="build" key="selection"/>
+		<item value="add" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="add"/>
+			<item value="mob"/>
+			<item value="a"/>
 			<item value="build"/>
 			<item value="spawnMob"/>
 			<item value="sid"/>
 			<item value="\/\*([\S\s]+?)\*\/"/>
 			<item value=" public Player"/>
-			<item value="System"/>
-			<item value="System.out."/>
-			<item value="system.out"/>
 		</list>
 		<list key="replacehistory">
 			<item value=""/>
