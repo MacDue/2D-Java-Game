@@ -32,7 +32,7 @@ public class BiomeDeco {
 		   }else return EpicarnoTiles.air;
 		   
 		   case 2:if (type ==1 ){
-			   return EpicarnoTiles.BackGroundStone; 
+			   return EpicarnoTiles.BackGroundDirt; 
 		   }else if (type == 2){
 			   return EpicarnoTiles.air;  
 		   }else if (type == 3){
@@ -46,7 +46,7 @@ public class BiomeDeco {
 			   return EpicarnoTiles.BackGroundStone; 
 			   
 		   }else if (type == 7){
-			   return EpicarnoTiles.BackGroundStone; 
+			   return EpicarnoTiles.BackGroundDirt; 
 			   
 		   }else return EpicarnoTiles.air;
 		   default: return EpicarnoTiles.air;

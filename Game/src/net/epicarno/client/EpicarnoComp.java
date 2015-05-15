@@ -288,8 +288,8 @@ if(playerlives == true){
      // Graphics h = this.screen.getGraphics();
      sky.render(g);
      
-     back.render(g, (int)sX, (int)sY, pixel.width / EpicarnoTiles.tileSize, pixel.height / EpicarnoTiles.tileSize + 2);
-     epicarnol.render(g, (int)sX, (int)sY, pixel.width / EpicarnoTiles.tileSize, pixel.height / EpicarnoTiles.tileSize + 2);
+     back.render(g, (int)sX, (int)sY, pixel.width / EpicarnoTiles.tileSize +4, pixel.height / EpicarnoTiles.tileSize +4);
+     epicarnol.render(g, (int)sX, (int)sY, pixel.width / EpicarnoTiles.tileSize +4, pixel.height / EpicarnoTiles.tileSize +4 );
 if(playerlives == true){
    player.render(g);
 }

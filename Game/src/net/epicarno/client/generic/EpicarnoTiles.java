@@ -32,7 +32,7 @@ public static int[] stone = {11,0};
 public static int[] wildgrass = {12,0};
 public static int[] rose = {13,0};
 public static int[] BackGroundStone = {14,0};
-public static int[] BackGroundDirt = {15};
+public static int[] BackGroundDirt = {15,0};
 public static int[] Skeleton = { 1 ,0};
    public static int[] Player = { 0 ,1};
    public static BufferedImage GameTile;
