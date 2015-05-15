@@ -30,6 +30,25 @@ public class BiomeDeco {
 			   return EpicarnoTiles.wizningmud; 
 			   
 		   }else return EpicarnoTiles.air;
+		   
+		   case 2:if (type ==1 ){
+			   return EpicarnoTiles.BackGroundStone; 
+		   }else if (type == 2){
+			   return EpicarnoTiles.air;  
+		   }else if (type == 3){
+			   return EpicarnoTiles.air; 
+		   }else if (type == 4){
+			   return EpicarnoTiles.air; 
+		   }else if (type == 5){
+			   return EpicarnoTiles.air; 
+			   
+		   }else if (type == 6){
+			   return EpicarnoTiles.BackGroundStone; 
+			   
+		   }else if (type == 7){
+			   return EpicarnoTiles.BackGroundStone; 
+			   
+		   }else return EpicarnoTiles.air;
 		   default: return EpicarnoTiles.air;
 		   }
 	//	return null;

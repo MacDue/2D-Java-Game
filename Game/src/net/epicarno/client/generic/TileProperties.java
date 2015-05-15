@@ -18,6 +18,10 @@ public class TileProperties {
 			return false;
 		}else if(id == EpicarnoTiles.air){
 			return false;
+		}else if(id == EpicarnoTiles.BackGroundDirt){
+			return false;
+		}else if(id == EpicarnoTiles.BackGroundStone){
+			return false;
 		}else {
 			return true;
 		}
