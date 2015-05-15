@@ -1,4 +1,4 @@
-/*   1:    */ package net.epicarno.client;
+package net.epicarno.client;
 /*   2:    */ 
 /*   3:    */ import java.awt.Color;
 /*   4:    */ import java.awt.Graphics;
@@ -13,14 +13,14 @@
 public int ly = 0;
 /*  13:  8 */   public GameBlocksEpicarno[][] block = new GameBlocksEpicarno[worldW][worldH];
 /*  14:    */   
-/*  15:    */   public EpicarnoL()
+/*  15:    */   public EpicarnoL(int BiomeID)
 /*  16:    */   {
 /*  17: 11 */     for (int x = 0; x < this.block.length; x++) {
 /*  18: 12 */       for (int y = 0; y < this.block[0].length; y++) {
 /*  19: 13 */         this.block[x][y] = new GameBlocksEpicarno(new Rectangle(x * EpicarnoTiles.tileSize, y * EpicarnoTiles.tileSize, EpicarnoTiles.tileSize, EpicarnoTiles.tileSize), EpicarnoTiles.air);
 /*  20:    */       }
 /*  21:    */     }
-/*  22: 17 */     gernerateELevel();
+/*  22: 17 */     gernerateELevel(BiomeID);
 /*  23:    */   }
 /*  24:    */   
 /* 16:   */   public void spawnMob(Mob mob)
@@ -28,8 +28,15 @@ public int ly = 0;
 /* 18:14 */     EpicarnoComp.mob.add(mob);
 /* 19:   */   }
 /* 20:   */   
-/*  25:    */   public void gernerateELevel()
+/*  25:    */   public void gernerateELevel(int BiomeID)
 /*  26:    */   {
+int[] TopBlock = EpicarnoComp.deco.GetBiomeDecorations(BiomeID, 1);
+ int[] BottomBlock =EpicarnoComp.deco.GetBiomeDecorations(BiomeID, 7);
+ int[] Stone = EpicarnoComp.deco.GetBiomeDecorations(BiomeID, 6);
+ int[] BiomeFlower = EpicarnoComp.deco.GetBiomeDecorations(BiomeID, 2);
+ int[] Shrub = EpicarnoComp.deco.GetBiomeDecorations(BiomeID, 3);
+ int[] Wood =  EpicarnoComp.deco.GetBiomeDecorations(BiomeID, 4);
+ int[] Leaves =  EpicarnoComp.deco.GetBiomeDecorations(BiomeID, 5);
 /*  27: 25 */     for (int y = 0; y < this.block.length; y++) {
 /*  28: 26 */       for (int x = 0; x < this.block[0].length; x++) {
 /*  29: 27 */         if (y > worldH / 4)
@@ -37,8 +44,8 @@ public int ly = 0;
 /*  31: 28 */           if (new Random().nextInt(100) > 20) {
 /*  32:    */             try
 /*  33:    */             {
-/*  34: 31 */               if (this.block[(x - 1)][(y - 1)].id == EpicarnoTiles.wizningmud) {
-/*  35: 32 */               this.block[x][y].id = EpicarnoTiles.wizningmud;
+/*  34: 31 */               if (this.block[(x - 1)][(y - 1)].id == BottomBlock) {
+/*  35: 32 */               this.block[x][y].id = BottomBlock;
 /*  36:    */               }
 /*  37:    */             }
 /*  38:    */             catch (Exception localException) {}
@@ -46,8 +53,8 @@ public int ly = 0;
 /*  31: 28 */           if (new Random().nextInt(100) > 20) {
 /*  32:    */             try
 /*  33:    */             {
-/*  34: 31 */               if (this.block[(x - 1)][(y - 1)].id == EpicarnoTiles.stone) {
-/*  35: 32 */               this.block[x][y].id = EpicarnoTiles.stone;
+/*  34: 31 */               if (this.block[(x - 1)][(y - 1)].id == Stone) {
+/*  35: 32 */               this.block[x][y].id = Stone;
 /*  36:    */               }
 /*  37:    */             }
 /*  38:    */             catch (Exception localException) {}
@@ -55,8 +62,8 @@ public int ly = 0;
 /*  40: 37 */           if (new Random().nextInt(100) > 30) {
 /*  41:    */             try
 /*  42:    */             {
-/*  43: 39 */               if (this.block[(x - 1)][(y - 1)].id == EpicarnoTiles.wizningmud) {
-/*  44: 40 */                this.block[x][y].id = EpicarnoTiles.wizningmud;
+/*  43: 39 */               if (this.block[(x - 1)][(y - 1)].id == BottomBlock) {
+/*  44: 40 */                this.block[x][y].id = BottomBlock;
 /*  45:    */               }
 /*  46:    */             }
 /*  47:    */             catch (Exception localException1) {}
@@ -64,28 +71,28 @@ public int ly = 0;
 /*  40: 37 */           if (new Random().nextInt(100) > 30) {
 /*  41:    */             try
 /*  42:    */             {
-/*  43: 39 */               if (this.block[(x - 1)][(y - 1)].id == EpicarnoTiles.stone) {
-/*  44: 40 */                this.block[x][y].id = EpicarnoTiles.stone;
+/*  43: 39 */               if (this.block[(x - 1)][(y - 1)].id == Stone) {
+/*  44: 40 */                this.block[x][y].id = Stone;
 /*  45:    */               }
 /*  46:    */             }
 /*  47:    */             catch (Exception localException1) {}
 /*  48:    */           }
 /*  49:    */           try
 /*  50:    */           {
-	/*  51: 48 */             if (this.block[x][(y - 1)].id == EpicarnoTiles.stone) {
-		/*  52: 49 */              this.block[x][y].id = EpicarnoTiles.stone;
+	/*  51: 48 */             if (this.block[x][(y - 1)].id == Stone) {
+		/*  52: 49 */              this.block[x][y].id = Stone;
 		/*  53:    */             }
-/*  51: 48 */             if (this.block[x][(y - 1)].id == EpicarnoTiles.wizningmud) {
-/*  52: 49 */              this.block[x][y].id = EpicarnoTiles.wizningmud;
+/*  51: 48 */             if (this.block[x][(y - 1)].id == BottomBlock) {
+/*  52: 49 */              this.block[x][y].id = BottomBlock;
 /*  53:    */             }
 /*  54:    */           }
 /*  55:    */           catch (Exception localException2) {}
 System.out.println(y);
 /*  56: 54 */           if (new Random().nextInt(100) < 45) {
 	                        if(y > 15){
-/*  57: 55 */             this.block[x][y].id = EpicarnoTiles.stone;
+/*  57: 55 */             this.block[x][y].id = Stone;
 	                        }else{
-	                        	  this.block[x][y].id = EpicarnoTiles.wizningmud;
+	                        	  this.block[x][y].id = BottomBlock;
 	                        }
 /*  58:    */           }
 /*  59:    */         }
@@ -95,21 +102,21 @@ System.out.println(y);
 /*  63: 63 */       for (int x = 0; x < this.block[0].length; x++) {
 /*  64:    */         try
 /*  65:    */         {
-/*  66: 66 */           if ((this.block[x][(y + 1)].id == EpicarnoTiles.wizningmud) && (this.block[x][y].id == EpicarnoTiles.air) && 
+/*  66: 66 */           if ((this.block[x][(y + 1)].id == BottomBlock) && (this.block[x][y].id == EpicarnoTiles.air) && 
 /*  67: 67 */             (new Random().nextInt(100) <= 7)) {
 /*  68: 68 */             for (int i = 0; i < new Random().nextInt(5) + 4; i++) {
-/*  69: 69 */               this.block[x][(y - i)].id = EpicarnoTiles.wood;
+/*  69: 69 */               this.block[x][(y - i)].id = Wood;
 ly = y - i;
 /*  70:    */             }
 
 for (int in = 0; in < new Random().nextInt(5) + 4; in++) {
 //int ly = y - i;
 /*  68: 68 */             for (int i = 0; i < new Random().nextInt(5) + 2; i++) {
-/*  69: 69 */               this.block[x - i][(ly-in)].id = EpicarnoTiles.leaf;
+/*  69: 69 */               this.block[x - i][(ly-in)].id = Leaves;
 /*  70:    */             }
 
 /*  68: 68 */             for (int i = 0; i < new Random().nextInt(5) + 2; i++) {
-/*  69: 69 */               this.block[x + i][(ly-in)].id = EpicarnoTiles.leaf;
+/*  69: 69 */               this.block[x + i][(ly-in)].id = Leaves;
 /*  70:    */             }
 
 }
@@ -123,31 +130,31 @@ for (int in = 0; in < new Random().nextInt(5) + 4; in++) {
 /*  75:    */     }
 /*  76: 80 */     for (int y = 0; y < this.block.length; y++) {
 /*  77: 81 */       for (int x = 0; x < this.block[0].length; x++) {
-/*  78: 82 */         if ((this.block[x][y].id == EpicarnoTiles.wizningmud) && (this.block[x][(y - 1)].id == EpicarnoTiles.air)) {
-/*  79: 83 */           this.block[x][y].id = EpicarnoTiles.Grass;
+/*  78: 82 */         if ((this.block[x][y].id == BottomBlock) && (this.block[x][(y - 1)].id == EpicarnoTiles.air)) {
+/*  79: 83 */           this.block[x][y].id = TopBlock;
 /*  80:    */         }
 /*  81:    */       }
 /*  82:    */     }
 /*  76: 80 */     for (int y = 0; y < this.block.length; y++) {
 /*  77: 81 */       for (int x = 0; x < this.block[0].length; x++) {
-/*  78: 82 */         if ((this.block[x][y].id == EpicarnoTiles.Grass) && (this.block[x][(y - 1)].id == EpicarnoTiles.air) && 
+/*  78: 82 */         if ((this.block[x][y].id == TopBlock) && (this.block[x][(y - 1)].id == EpicarnoTiles.air) && 
 		/*  67: 67 */             (new Random().nextInt(100) <= 20)) {
-/*  79: 83 */          this.block[x][y-1].id = EpicarnoTiles.wildgrass;
+/*  79: 83 */          this.block[x][y-1].id = Shrub;
 /*  80:    */         }
 /*  81:    */       }
 /*  82:    */     }
 /*  76: 80 */     for (int y = 0; y < this.block.length; y++) {
 /*  77: 81 */       for (int x = 0; x < this.block[0].length; x++) {
-/*  78: 82 */         if ((this.block[x][y].id == EpicarnoTiles.Grass) && (this.block[x][(y - 1)].id == EpicarnoTiles.air) && 
+/*  78: 82 */         if ((this.block[x][y].id == TopBlock) && (this.block[x][(y - 1)].id == EpicarnoTiles.air) && 
 		/*  67: 67 */             (new Random().nextInt(100) <= 4)) {
-/*  79: 83 */          this.block[x][y-1].id = EpicarnoTiles.rose;
+/*  79: 83 */          this.block[x][y-1].id = BiomeFlower;
 /*  80:    */         }
 /*  81:    */       }
 /*  82:    */     }
 /*  83: 89 */     for (int y = 0; y < this.block.length; y++) {
 /*  84: 90 */       for (int x = 0; x < this.block[0].length; x++) {
 	
-	// if (this.block[x][(y - 1)].id == EpicarnoTiles.wizningmud) {
+	// if (this.block[x][(y - 1)].id == BottomBlock) {
 //	this.block[x][y].lightLevel = 16;
 ////	}else{
 		//.block[x][y].lightLevel = 16;
@@ -249,8 +256,3 @@ if( ((this.block[x][(y + 1)].id  != EpicarnoTiles.air) || (this.block[x][(y - 1)
 /* 154:    */   }
 /* 155:    */ }
 
-
-/* Location:           E:\New folder (6)\MineD.jar
- * Qualified Name:     net.epicarno.client.EpicarnoL
- * JD-Core Version:    0.7.0.1
- */

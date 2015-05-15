@@ -1,0 +1,131 @@
+/*  25:    */   public void gernerateELevel(int BiomeID)
+/*  26:    */   {
+/*  27: 25 */     for (int y = 0; y < this.block.length; y++) {
+/*  28: 26 */       for (int x = 0; x < this.block[0].length; x++) {
+/*  29: 27 */         if (y > worldH / 4)
+/*  30:    */         {
+/*  31: 28 */           if (new Random().nextInt(100) > 20) {
+/*  32:    */             try
+/*  33:    */             {
+/*  34: 31 */               if (this.block[(x - 1)][(y - 1)].id == deco.GetBiomeDecorations(BiomeID, 7)) {
+/*  35: 32 */               this.block[x][y].id = deco.GetBiomeDecorations(BiomeID, 7);
+/*  36:    */               }
+/*  37:    */             }
+/*  38:    */             catch (Exception localException) {}
+/*  39:    */           }
+/*  31: 28 */           if (new Random().nextInt(100) > 20) {
+/*  32:    */             try
+/*  33:    */             {
+/*  34: 31 */               if (this.block[(x - 1)][(y - 1)].id == deco.GetBiomeDecorations(BiomeID, 6)) {
+/*  35: 32 */               this.block[x][y].id = deco.GetBiomeDecorations(BiomeID, 6);
+/*  36:    */               }
+/*  37:    */             }
+/*  38:    */             catch (Exception localException) {}
+/*  39:    */           }
+/*  40: 37 */           if (new Random().nextInt(100) > 30) {
+/*  41:    */             try
+/*  42:    */             {
+/*  43: 39 */               if (this.block[(x - 1)][(y - 1)].id == deco.GetBiomeDecorations(BiomeID, 7)) {
+/*  44: 40 */                this.block[x][y].id = deco.GetBiomeDecorations(BiomeID, 7);
+/*  45:    */               }
+/*  46:    */             }
+/*  47:    */             catch (Exception localException1) {}
+/*  48:    */           }
+/*  40: 37 */           if (new Random().nextInt(100) > 30) {
+/*  41:    */             try
+/*  42:    */             {
+/*  43: 39 */               if (this.block[(x - 1)][(y - 1)].id == deco.GetBiomeDecorations(BiomeID, 6)) {
+/*  44: 40 */                this.block[x][y].id = deco.GetBiomeDecorations(BiomeID, 6);
+/*  45:    */               }
+/*  46:    */             }
+/*  47:    */             catch (Exception localException1) {}
+/*  48:    */           }
+/*  49:    */           try
+/*  50:    */           {
+	/*  51: 48 */             if (this.block[x][(y - 1)].id == deco.GetBiomeDecorations(BiomeID, 6)) {
+		/*  52: 49 */              this.block[x][y].id = deco.GetBiomeDecorations(BiomeID, 6);
+		/*  53:    */             }
+/*  51: 48 */             if (this.block[x][(y - 1)].id == deco.GetBiomeDecorations(BiomeID, 7)) {
+/*  52: 49 */              this.block[x][y].id = deco.GetBiomeDecorations(BiomeID, 7);
+/*  53:    */             }
+/*  54:    */           }
+/*  55:    */           catch (Exception localException2) {}
+System.out.println(y);
+/*  56: 54 */           if (new Random().nextInt(100) < 45) {
+	                        if(y > 15){
+/*  57: 55 */             this.block[x][y].id = deco.GetBiomeDecorations(BiomeID, 6);
+	                        }else{
+	                        	  this.block[x][y].id = deco.GetBiomeDecorations(BiomeID, 7);
+	                        }
+/*  58:    */           }
+/*  59:    */         }
+/*  60:    */       }
+/*  61:    */     }
+/*  62: 62 */     for (int y = 0; y < this.block.length; y++) {
+/*  63: 63 */       for (int x = 0; x < this.block[0].length; x++) {
+/*  64:    */         try
+/*  65:    */         {
+/*  66: 66 */           if ((this.block[x][(y + 1)].id == deco.GetBiomeDecorations(BiomeID, 7)) && (this.block[x][y].id == EpicarnoTiles.air) && 
+/*  67: 67 */             (new Random().nextInt(100) <= 7)) {
+/*  68: 68 */             for (int i = 0; i < new Random().nextInt(5) + 4; i++) {
+/*  69: 69 */               this.block[x][(y - i)].id = deco.GetBiomeDecorations(BiomeID, 4);
+ly = y - i;
+/*  70:    */             }
+
+for (int in = 0; in < new Random().nextInt(5) + 4; in++) {
+//int ly = y - i;
+/*  68: 68 */             for (int i = 0; i < new Random().nextInt(5) + 2; i++) {
+/*  69: 69 */               this.block[x - i][(ly-in)].id = deco.GetBiomeDecorations(BiomeID, 5);
+/*  70:    */             }
+
+/*  68: 68 */             for (int i = 0; i < new Random().nextInt(5) + 2; i++) {
+/*  69: 69 */               this.block[x + i][(ly-in)].id = deco.GetBiomeDecorations(BiomeID, 5);
+/*  70:    */             }
+
+}
+                         
+/*  71:    */           }
+/*  72:    */         }
+/*  73:    */         catch (Exception localException3) {}
+/*  74:    */       }
+
+
+/*  75:    */     }
+/*  76: 80 */     for (int y = 0; y < this.block.length; y++) {
+/*  77: 81 */       for (int x = 0; x < this.block[0].length; x++) {
+/*  78: 82 */         if ((this.block[x][y].id == deco.GetBiomeDecorations(BiomeID, 7)) && (this.block[x][(y - 1)].id == EpicarnoTiles.air)) {
+/*  79: 83 */           this.block[x][y].id = deco.GetBiomeDecorations(BiomeID, 1);
+/*  80:    */         }
+/*  81:    */       }
+/*  82:    */     }
+/*  76: 80 */     for (int y = 0; y < this.block.length; y++) {
+/*  77: 81 */       for (int x = 0; x < this.block[0].length; x++) {
+/*  78: 82 */         if ((this.block[x][y].id == deco.GetBiomeDecorations(BiomeID, 1)) && (this.block[x][(y - 1)].id == EpicarnoTiles.air) && 
+		/*  67: 67 */             (new Random().nextInt(100) <= 20)) {
+/*  79: 83 */          this.block[x][y-1].id = deco.GetBiomeDecorations(BiomeID, 3);
+/*  80:    */         }
+/*  81:    */       }
+/*  82:    */     }
+/*  76: 80 */     for (int y = 0; y < this.block.length; y++) {
+/*  77: 81 */       for (int x = 0; x < this.block[0].length; x++) {
+/*  78: 82 */         if ((this.block[x][y].id == deco.GetBiomeDecorations(BiomeID, 1)) && (this.block[x][(y - 1)].id == EpicarnoTiles.air) && 
+		/*  67: 67 */             (new Random().nextInt(100) <= 4)) {
+/*  79: 83 */          this.block[x][y-1].id = deco.GetBiomeDecorations(BiomeID, 2);
+/*  80:    */         }
+/*  81:    */       }
+/*  82:    */     }
+/*  83: 89 */     for (int y = 0; y < this.block.length; y++) {
+/*  84: 90 */       for (int x = 0; x < this.block[0].length; x++) {
+	
+	// if (this.block[x][(y - 1)].id == deco.GetBiomeDecorations(BiomeID, 7)) {
+//	this.block[x][y].lightLevel = 16;
+////	}else{
+		//.block[x][y].lightLevel = 16;
+	//}
+/*  85: 91 */         if ((x == 0) || (y == 0) || (x == this.block[0].length - 1) || (y == this.block.length - 1)) {
+/*  86: 92 */           this.block[x][y].id = EpicarnoTiles.bedrock;
+/*  87:    */         }
+/*  88:    */       }
+/*  89:    */     }
+/*  90:    */   }
+/*  91:    */   

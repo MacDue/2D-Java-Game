@@ -41,6 +41,7 @@ public static int dr= 0;
 /*  28: 27 */   public static boolean isHipideHopping = false;
 /*  29: 28 */   public static boolean isLeftyDown = false;
 /*  30: 29 */   public static boolean isRightyDown = false;
+public static BiomeDeco deco;
 public static boolean sp = false;
 /*  31:    */   private Image screen;
 public static boolean playerlives = false;
@@ -69,8 +70,8 @@ public static boolean redoBar = false;
 /*  49:    */   public void start()
 /*  50:    */   {
 /*  51: 52 */     requestFocus();
-/*  52:    */     
-/*  53: 54 */     epicarnol = new EpicarnoL();
+/*  52:    */     deco = new BiomeDeco();
+/*  53: 54 */     epicarnol = new EpicarnoL(1);
 /*  54: 55 */  //   player = new Player(EpicarnoTiles.tileSize, EpicarnoTiles.tileSize * 2);
 /*  55: 56 */     new EpicarnoTiles();
 
