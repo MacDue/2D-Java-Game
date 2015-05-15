@@ -186,6 +186,18 @@ int[] TopBlock = EpicarnoComp.deco.GetBiomeDecorations(BiomeID, 1);
                }
                this.block[x][y].id = EpicarnoTiles.air;
                
+               if (this.block[x][(y - 1)].id != EpicarnoTiles.wildgrass) {
+                   
+               }else{
+               this.block[x][(y - 1)].id = EpicarnoTiles.air;
+               }
+               
+               if (this.block[x][(y - 1)].id != EpicarnoTiles.rose) {
+                   
+               }else{
+               this.block[x][(y - 1)].id = EpicarnoTiles.air;
+               }
+               
                break;
              }
 if(sid == EpicarnoTiles.Player){
@@ -212,7 +224,7 @@ if(sid == EpicarnoTiles.Skeleton){
 	
 }
              if ((!EpicarnoComp.isRightyDown) || 
-               (this.block[x][y].id != EpicarnoTiles.air) || (
+              ( (this.block[x][y].id != EpicarnoTiles.air) &&  (this.block[x][y].id != EpicarnoTiles.rose) && (this.block[x][y].id != EpicarnoTiles.wildgrass)) || (
                (sid != EpicarnoTiles.wizningmud) && (sid != EpicarnoTiles.Grass) && (sid != EpicarnoTiles.seasand) && (sid != EpicarnoTiles.wood) && (sid != EpicarnoTiles.planks) && (sid != EpicarnoTiles.bling) && (sid != EpicarnoTiles.bricks) && (sid != EpicarnoTiles.ob) && (sid != EpicarnoTiles.stone) && (sid != EpicarnoTiles.Glass) && (sid != EpicarnoTiles.leaf) ) && (sid != EpicarnoTiles.shittybricks) ) {
                break;
              }
@@ -220,9 +232,12 @@ if( ((this.block[x][(y + 1)].id  != EpicarnoTiles.air) || (this.block[x][(y - 1)
              this.block[x][y].id = sid;
 }
              if (this.block[x][(y + 1)].id != EpicarnoTiles.Grass) {
-               break;
-             }
+              
+             }else{
              this.block[x][(y + 1)].id = EpicarnoTiles.wizningmud;
+             }
+             
+       
              
  
  
