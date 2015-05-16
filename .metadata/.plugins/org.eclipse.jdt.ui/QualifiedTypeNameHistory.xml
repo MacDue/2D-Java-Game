@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="net.epicarno.client.generic.TileProperties"/>
 <fullyQualifiedTypeName name="java.lang.System"/>
 <fullyQualifiedTypeName name="net.epicarno.client.world.EpicarnoBackground"/>
+<fullyQualifiedTypeName name="net.epicarno.client.generic.TileProperties"/>
 </qualifiedTypeNameHistroy>

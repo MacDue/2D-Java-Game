@@ -17,13 +17,15 @@ import net.epicarno.client.generic.TileProperties;
    public int HipdieHopCount = 0;
    public int anima = 0;
    public int animaFrame = 0;
+   public   TileProperties tileProp = new TileProperties();
    public int animaTime = 20;
    public boolean isHipideHopping = false;
    
    public Player(int width, int height)
    {
      setBounds(EpicarnoComp.pixel.width / 2 - width / 2, EpicarnoComp.pixel.height / 2 - height / 2, width, height);
-
+this.x = (5000 * 16);
+EpicarnoComp.sX = this.x-(16*12);
    }
    
 public void redo(int width, int height){
@@ -34,20 +36,35 @@ public void redo(int width, int height){
 
    public void tick()
    {
+	 /*  if(isCollidingWithBlock(new Point((int)this.x + 2, (int)(this.y + this.height)), new Point((int)(this.x + this.width - 2.0D), (int)(this.y + this.height)))){
+		   //if(!isCollidingWithBlock(new Point((int)this.x + 3, (int)(this.y + this.height)), new Point((int)(this.x +1 + this.width - 2.0D), (int)(this.y + this.height)))){
+//System.out.println(this.y);
+		 if( EpicarnoComp.epicarnol.GetTile(((int)x / 16)+1,((int) y / 16)-1)  == EpicarnoTiles.air){;
+		 this.x = (((int)x / 16)+1) * 16;
+		 this.y = (((int)y / 16)-1) * 16;
+		 EpicarnoComp.sX += 16 ;
+		 EpicarnoComp.sY -= 16 ;
+		 }
+	   }
+	   
+	   */
 	
      if ((!this.isHipideHopping)&& (!isCollidingWithBlock(new Point((int)this.x + 2, (int)(this.y + this.height)), new Point((int)(this.x + this.width - 2.0D), (int)(this.y + this.height)))))
      {
        this.y += this.fallingspeed;
       EpicarnoComp.sY += this.fallingspeed;
+      System.out.println(anima);
+      EpicarnoTiles.Player[1] = 7;
       if (this.animaFrame >= this.animaTime)
       {
-   	   EpicarnoTiles.Player[1] = 7;
+   	   
    	   animaTime = 20;
         if (this.anima >= 10) {
           this.anima = 0;
         } else {
           this.anima += 1;
         }
+        
         this.animaFrame = 0;
       }
       else
@@ -56,12 +73,14 @@ public void redo(int width, int height){
         this.animaFrame += 1;
        // System.out.println(this.anima);
       }
+    
      }
+     
      else if ((EpicarnoComp.isHipideHopping) && (!Inventory.isOpen))
      {
        this.isHipideHopping = true;
      }
-     if ((EpicarnoComp.isMoving) && (!Inventory.isOpen))
+     if (((EpicarnoComp.isMoving) && (!Inventory.isOpen)))
      {
        boolean canMove = false;
        if (EpicarnoComp.dir == this.movingSpeed) {
@@ -142,7 +161,7 @@ public void redo(int width, int height){
    
    public boolean isCollidingWithBlock(Point pt1, Point pt2)
    {
-	   TileProperties tileProp = new TileProperties();
+	 
      for (int x = (int)(this.x / EpicarnoTiles.tileSize); x < this.x / EpicarnoTiles.tileSize + 3.0D; x++) {
        for (int y = (int)(this.y / EpicarnoTiles.tileSize); y < this.y / EpicarnoTiles.tileSize + 3.0D; y++) {
          if ((x >= 0) && (y >= 0) && (x < EpicarnoComp.epicarnol.block.length) && (y < EpicarnoComp.epicarnol.block[0].length) && 

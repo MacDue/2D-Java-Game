@@ -28,6 +28,7 @@
    public static int[] ob = { 3,0 };
    public static int[] Zombie = { 1 ,0};
    public static int[] leaf = {10,0};
+   public static int[] RealBR = {15,1};
 public static int[] stone = {11,0};
 public static int[] wildgrass = {12,0};
 public static int[] rose = {13,0};
