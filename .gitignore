@@ -49,6 +49,11 @@ Temporary Items
 .metadata/
 .metadata\
 .metadata
+metadata/
+*.zip
+*.index
+*xmi
+*.log/
 .recommenders\
 .recommenders
 # Intellij

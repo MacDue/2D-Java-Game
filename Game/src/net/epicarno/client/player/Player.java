@@ -25,7 +25,7 @@ import net.epicarno.client.generic.TileProperties;
    {
      setBounds(EpicarnoComp.pixel.width / 2 - width / 2, EpicarnoComp.pixel.height / 2 - height / 2, width, height);
 this.x = (5000 * 16);
-EpicarnoComp.sX = this.x-(16*12);
+//EpicarnoComp.sX = this.x-(16*12);
    }
    
 public void redo(int width, int height){
@@ -34,7 +34,8 @@ public void redo(int width, int height){
 }
 
 
-   public void tick()
+   @SuppressWarnings("static-access")
+public void tick()
    {
 	 /*  if(isCollidingWithBlock(new Point((int)this.x + 2, (int)(this.y + this.height)), new Point((int)(this.x + this.width - 2.0D), (int)(this.y + this.height)))){
 		   //if(!isCollidingWithBlock(new Point((int)this.x + 3, (int)(this.y + this.height)), new Point((int)(this.x +1 + this.width - 2.0D), (int)(this.y + this.height)))){

@@ -22,6 +22,8 @@ import net.epicarno.client.generic.EpicarnoTiles;
    
    public void render(Graphics g, boolean isSelected)
    {
+	   
+	  
      if ((Inventory.isOpen) && (contains(new Point(EpicarnoComp.mse.x / EpicarnoComp.pixelSize, EpicarnoComp.mse.y / EpicarnoComp.pixelSize))))
      {
        g.setColor(new Color(255, 255, 255, 130));

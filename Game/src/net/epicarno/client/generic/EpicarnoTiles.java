@@ -39,7 +39,7 @@ public static int[] Skeleton = { 1 ,0};
    public static BufferedImage GameTile;
    public static BufferedImage tile_cell;
    public static BufferedImage tile_select;
-   
+   public static BufferedImage Heart;
    public EpicarnoTiles()
    {
      try
@@ -47,6 +47,7 @@ public static int[] Skeleton = { 1 ,0};
        GameTile = ImageIO.read(new File("res/GameTile.png"));
        tile_cell = ImageIO.read(new File("res/tile_cell.png"));
        tile_select = ImageIO.read(new File("res/tile_select.png"));
+       Heart = ImageIO.read(new File("res/Heart.png"));
      }
      catch (Exception localException) {}
    }

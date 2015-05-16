@@ -1,7 +1,6 @@
  package net.epicarno.client.world;
  
- import java.awt.Color;
-import java.awt.Graphics;
+ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.RescaleOp;
 
@@ -21,7 +20,8 @@ import net.epicarno.client.generic.EpicarnoTiles;
      this.id = id;
    }
    
-   public void render(Graphics g)
+   @SuppressWarnings("unused")
+public void render(Graphics g)
    {
      if (this.id != EpicarnoTiles.air) {
 	  float scaleFactor = 0.5f;

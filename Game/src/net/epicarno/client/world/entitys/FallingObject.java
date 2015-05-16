@@ -2,9 +2,7 @@
  
  import java.awt.Graphics;
  import java.awt.Point;
- import java.util.Random;
-
-import net.epicarno.client.EpicarnoComp;
+ import net.epicarno.client.EpicarnoComp;
 import net.epicarno.client.generic.DobbleRec;
 import net.epicarno.client.generic.EpicarnoTiles;
 import net.epicarno.client.generic.TileProperties;

@@ -11,10 +11,6 @@ import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
-import java.awt.event.MouseWheelListener;
-import java.awt.image.VolatileImage;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
@@ -29,6 +25,7 @@ import net.epicarno.client.player.InvItems;
 import net.epicarno.client.player.Inventory;
 import net.epicarno.client.player.Listening;
 import net.epicarno.client.player.Player;
+import net.epicarno.client.player.PlayerHudRenderer;
 import net.epicarno.client.world.BiomeDeco;
 import net.epicarno.client.world.EpicarnoBackground;
 import net.epicarno.client.world.EpicarnoL;
@@ -70,9 +67,10 @@ public static boolean redoBar = false;
    public static Inventory invent;
    public static Sky sky;
    public static Camera Cam;
+   public static PlayerHudRenderer hud;
    public static Info info;
    public static Spawner spawner;
-   public static ArrayList<Mob> mob = new ArrayList();
+   public static ArrayList<Mob> mob = new ArrayList<Mob>();
    private static JFrame frame;
    
    public EpicarnoComp()
@@ -105,7 +103,7 @@ player = new Player(EpicarnoTiles.tileSize, EpicarnoTiles.tileSize * 2);
 Cam = new Camera();
 playerlives = true;
 sp=true;
-     
+     hud = new PlayerHudRenderer(new Rectangle(EpicarnoComp.pixel.width / 2 - (EpicarnoTiles.invLength * EpicarnoTiles.incCellSize + EpicarnoTiles.incCellSize) / 2 + 1 * (EpicarnoTiles.incCellSize + EpicarnoTiles.invCellSpace), EpicarnoComp.pixel.height -19- (EpicarnoTiles.incCellSize + EpicarnoTiles.invBorderSpace), EpicarnoTiles.incCellSize, EpicarnoTiles.incCellSize), EpicarnoTiles.air);
  
      isRunning = true;
      new Thread(this).start();
@@ -177,8 +175,8 @@ frame.setResizable(false);
 
      
 Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-int width = (int) screenSize.getWidth();
-int height = (int) screenSize.getHeight();
+screenSize.getWidth();
+screenSize.getHeight();
      realSize = new Dimension(frame.getWidth(), frame.getHeight());
 //frame.setSize(width,height);
 
@@ -283,8 +281,8 @@ public void invRedraw(){
 	
 	setPreferredSize(new Dimension(frame.getWidth(), frame.getHeight()));
 	Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-	int width = (int) screenSize.getWidth();
-	int height = (int) screenSize.getHeight();
+	screenSize.getWidth();
+	screenSize.getHeight();
 	
 
 	     //realSize = new Dimension(frame.getWidth(), frame.getHeight());
@@ -330,10 +328,11 @@ if(playerlives == true){
      Graphics g = this.screen.getGraphics();
      // Graphics h = this.screen.getGraphics();
      sky.render(g);
-     
+    
      back.render(g, (int)sX, (int)sY, pixel.width / EpicarnoTiles.tileSize +4, pixel.height / EpicarnoTiles.tileSize +4);
      epicarnol.render(g, (int)sX, (int)sY, pixel.width / EpicarnoTiles.tileSize +4, pixel.height / EpicarnoTiles.tileSize +4 );
 if(playerlives == true){
+	hud.renderP(g);
    player.render(g);
 }
      for (int i = 0; i < mob.toArray().length; i++) {
@@ -344,7 +343,7 @@ if(playerlives == true){
 invent.render(g);
 //info.render(g);
      
- 
+hud.render(g,50);
      //h = invent.;
    g= getGraphics();
    int Teste = frame.getWidth();
