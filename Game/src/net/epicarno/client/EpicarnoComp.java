@@ -23,6 +23,7 @@ import net.epicarno.client.generic.EpicarnoTiles;
 import net.epicarno.client.generic.Info;
 import net.epicarno.client.mobs.Mob;
 import net.epicarno.client.mobs.Spawner;
+import net.epicarno.client.player.Camera;
 import net.epicarno.client.player.Cell;
 import net.epicarno.client.player.InvItems;
 import net.epicarno.client.player.Inventory;
@@ -68,6 +69,7 @@ public static InvItems items;
 public static boolean redoBar = false;
    public static Inventory invent;
    public static Sky sky;
+   public static Camera Cam;
    public static Info info;
    public static Spawner spawner;
    public static ArrayList<Mob> mob = new ArrayList();
@@ -94,10 +96,14 @@ public static boolean redoBar = false;
 items = new InvItems();
 invent = new Inventory();
      
+     
      sky = new Sky();
 
      spawner = new Spawner();
-player = null;
+player = new Player(EpicarnoTiles.tileSize, EpicarnoTiles.tileSize * 2);
+
+Cam = new Camera();
+playerlives = true;
 sp=true;
      
  
@@ -210,19 +216,56 @@ public void invRedraw(){
 		    Inventory. invBar[5].id =  InvItems.invItems[5].id;
 		    Inventory. invBar[6].id =  InvItems.invItems[6].id;
 		    Inventory. invBar[7].id =  InvItems.invItems[7].id;
-		   Inventory.  invBag[0].id = InvItems.invBagItems[0].id;
-		   Inventory.  invBag[1].id = InvItems.invBagItems[1].id;
-		
-		     Inventory. invBag[2].id = InvItems. invBagItems[2].id; 
-		      Inventory.invBag[3].id = InvItems.invBagItems[3].id ;
-		     Inventory.  invBag[4].id = InvItems. invBagItems[4].id ;
-		     Inventory.  invBag[5].id = InvItems. invBagItems[5].id ;
-		     Inventory.  invBag[6].id = InvItems. invBagItems[6].id ;
-		     Inventory.  invBag[7].id = InvItems. invBagItems[7].id ;
+		  
+		    Inventory.  invBag[8].id = InvItems.invBagItems[8].id;
+		    Inventory.  invBag[9].id = InvItems.invBagItems[9].id;
+		    Inventory. invBag[10].id = InvItems. invBagItems[10].id; 
+		    Inventory.invBag[11].id = InvItems.invBagItems[11].id ;
+		    Inventory.  invBag[12].id = InvItems. invBagItems[12].id ;
+		    Inventory.  invBag[13].id = InvItems. invBagItems[13].id ;
+		    Inventory.  invBag[14].id = InvItems. invBagItems[14].id ;
+		    Inventory.  invBag[15].id = InvItems. invBagItems[15].id ;
+		    
+		    Inventory.  invBag[16].id = InvItems.invBagItems[16].id;
+		    Inventory.  invBag[17].id = InvItems.invBagItems[17].id;
+		    Inventory. invBag[18].id = InvItems. invBagItems[18].id; 
+		    Inventory.invBag[19].id = InvItems.invBagItems[19].id ;
+		    Inventory.  invBag[20].id = InvItems. invBagItems[20].id ;
+		    Inventory.  invBag[21].id = InvItems. invBagItems[21].id ;
+		    Inventory.  invBag[22].id = InvItems. invBagItems[22].id ;
+		    Inventory.  invBag[23].id = InvItems. invBagItems[23].id ;
+		    
+		    Inventory.  invBag[24].id = InvItems.invBagItems[24].id;
+		    Inventory.  invBag[25].id = InvItems.invBagItems[25].id;
+		    Inventory. invBag[26].id = InvItems. invBagItems[26].id; 
+		    Inventory.invBag[27].id = InvItems.invBagItems[27].id ;
+		    Inventory.  invBag[28].id = InvItems. invBagItems[28].id ;
+		    Inventory.  invBag[29].id = InvItems. invBagItems[29].id ;
+		    Inventory.  invBag[30].id = InvItems. invBagItems[30].id ;
+		    Inventory.  invBag[31].id = InvItems. invBagItems[31].id ;
+		    
+		    Inventory.  invBag[32].id = InvItems.invBagItems[32].id;
+		    Inventory.  invBag[33].id = InvItems.invBagItems[33].id;
+		    Inventory. invBag[34].id = InvItems. invBagItems[34].id; 
+		    Inventory.invBag[35].id = InvItems.invBagItems[35].id ;
+		    Inventory.  invBag[36].id = InvItems. invBagItems[36].id ;
+		    Inventory.  invBag[37].id = InvItems. invBagItems[37].id ;
+		    Inventory.  invBag[38].id = InvItems. invBagItems[38].id ;
+		    Inventory.  invBag[39].id = InvItems. invBagItems[39].id ;
+		    
+		    Inventory.  invBag[0].id = InvItems.invBagItems[0].id;
+		    Inventory.  invBag[1].id = InvItems.invBagItems[1].id;
+		    Inventory. invBag[2].id = InvItems. invBagItems[2].id; 
+		    Inventory.invBag[3].id = InvItems.invBagItems[3].id ;
+		    Inventory.  invBag[4].id = InvItems. invBagItems[4].id ;
+		    Inventory.  invBag[5].id = InvItems. invBagItems[5].id ;
+		    Inventory.  invBag[6].id = InvItems. invBagItems[6].id ;
+		    Inventory.  invBag[7].id = InvItems. invBagItems[7].id ;
 }
    public void tick()
    {
-	
+	   
+	Cam.tick();
 	if(redoBar == true){
 		renderBar();
 		if((sp == true)){
@@ -232,7 +275,7 @@ public void invRedraw(){
 	}
 	if((sp == true) && (dr == 0)){
 		dr = 1;
-		 player = new Player(EpicarnoTiles.tileSize, EpicarnoTiles.tileSize * 2);
+		// player = new Player(EpicarnoTiles.tileSize, EpicarnoTiles.tileSize * 2);
 		 playerlives = true;
 		 //frame.setResizable(false);
 		// frame.setMinimumSize(new Dimension(frame.getWidth(), frame.getHeight()));
@@ -369,7 +412,7 @@ public void keyPressed(KeyEvent e) {
 	     switch (key)
 	     {
 	     case 13: 
-		System.out.println(frame.getWidth());
+	//	System.out.println(frame.getWidth());
 	       break;
 
 	     }

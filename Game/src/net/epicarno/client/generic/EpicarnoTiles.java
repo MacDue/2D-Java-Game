@@ -8,7 +8,7 @@
  {
    public static int tileSize = 16;
    public static int invLength = 8;
-   public static int invHeight = 1;
+   public static int invHeight = 5;
    public static int incCellSize = 25;
    public static int invCellSpace = 4;
    public static int invBorderSpace = 4;

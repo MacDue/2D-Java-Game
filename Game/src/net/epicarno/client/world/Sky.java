@@ -14,6 +14,7 @@ import net.epicarno.client.EpicarnoComp;
    public int r1 = 100;
    public int g1 = 149;
    public int b1 = 237;
+   
    public int r2 = 21;
    public int g2 = 20;
    public int b2 = 20;

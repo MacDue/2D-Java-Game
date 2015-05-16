@@ -1,6 +1,7 @@
  package net.epicarno.client.player;
  
- import java.awt.Dimension;
+ import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Rectangle;
@@ -90,7 +91,7 @@ import net.epicarno.client.generic.EpicarnoTiles;
            {
              InvItems.invBagItems[i].id = holdingID;
 
-System.out.println( InvItems.invBagItems[i].id);
+//System.out.println( InvItems.invBagItems[i].id);
              
  
              isHolding = false;
@@ -109,6 +110,10 @@ System.out.println( InvItems.invBagItems[i].id);
    
    public void render(Graphics h)
    {
+
+ h.setColor(new Color(167, 255, 200, 60));
+
+	 h.drawString("Ben Maxwell Java Test Project", 1, 20);
      for (int i = 0; i < invBar.length; i++)
      {
        boolean isSelected = false;
@@ -119,10 +124,12 @@ System.out.println( InvItems.invBagItems[i].id);
      }
      if (isOpen)
      {
-       for (int i = 0; i < invBar.length; i++) {
+    	// System.out.println(invBar.length);
+       for (int i = 0; i < invBag.length; i++) {
          invBag[i].render(h, false);
        }
        if (isHolding) {
+    	   
          h.drawImage(EpicarnoTiles.GameTile, EpicarnoComp.mse.x / EpicarnoComp.pixelSize - EpicarnoTiles.incCellSize / 2 + EpicarnoTiles.BlockIcons, EpicarnoComp.mse.y / EpicarnoComp.pixelSize - EpicarnoTiles.incCellSize / 2 + EpicarnoTiles.BlockIcons, EpicarnoComp.mse.x / EpicarnoComp.pixelSize - EpicarnoTiles.incCellSize / 2 + EpicarnoTiles.incCellSize - EpicarnoTiles.BlockIcons, EpicarnoComp.mse.y / EpicarnoComp.pixelSize - EpicarnoTiles.incCellSize / 2 + EpicarnoTiles.incCellSize - EpicarnoTiles.BlockIcons, holdingID[0] * EpicarnoTiles.tileSize, holdingID[1] * EpicarnoTiles.tileSize, holdingID[0] * EpicarnoTiles.tileSize + EpicarnoTiles.tileSize, holdingID[1] * EpicarnoTiles.tileSize + EpicarnoTiles.tileSize, null);
        }
      }

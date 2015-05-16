@@ -52,8 +52,8 @@ public void redo(int width, int height){
      if ((!this.isHipideHopping)&& (!isCollidingWithBlock(new Point((int)this.x + 2, (int)(this.y + this.height)), new Point((int)(this.x + this.width - 2.0D), (int)(this.y + this.height)))))
      {
        this.y += this.fallingspeed;
-      EpicarnoComp.sY += this.fallingspeed;
-      System.out.println(anima);
+   //   EpicarnoComp.sY += this.fallingspeed;
+     // System.out.println(anima);
       EpicarnoTiles.Player[1] = 7;
       if (this.animaFrame >= this.animaTime)
       {
@@ -110,7 +110,9 @@ public void redo(int width, int height){
        {
          this.x += EpicarnoComp.dir;
 //EpicarnoComp.sX +100;
-         EpicarnoComp.sX += EpicarnoComp.dir ;
+         
+
+       //  EpicarnoComp.sX += EpicarnoComp.dir ;
        }
      }
      else
@@ -147,7 +149,7 @@ public void redo(int width, int height){
          else
          {
            this.y -= this.HipdieHopSpeed;
-           EpicarnoComp.sY -= this.HipdieHopSpeed;
+           //EpicarnoComp.sY -= this.HipdieHopSpeed;
            this.HipdieHopCount += 1;
          }
        }

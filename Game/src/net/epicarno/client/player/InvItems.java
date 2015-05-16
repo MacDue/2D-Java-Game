@@ -32,13 +32,51 @@ public class InvItems {
 		      invItems[5].id = EpicarnoTiles.bling;
 		      invItems[6].id = EpicarnoTiles.bricks;
 		      invItems[7].id = EpicarnoTiles.Glass;
-		      invBagItems[0].id = EpicarnoTiles.shittybricks;
-		      invBagItems[1].id = EpicarnoTiles.ob;
-		      invBagItems[2].id = EpicarnoTiles.Zombie;
-		      invBagItems[3].id = EpicarnoTiles.rose;
-		      invBagItems[4].id = EpicarnoTiles.Skeleton;
-		      invBagItems[5].id = EpicarnoTiles.stone;
-		      invBagItems[6].id = EpicarnoTiles.leaf;
+		      invBagItems[0].id = EpicarnoTiles.air;
+		      invBagItems[1].id = EpicarnoTiles.air;
+		      invBagItems[2].id = EpicarnoTiles.air;
+		      invBagItems[3].id = EpicarnoTiles.air;
+		      invBagItems[4].id = EpicarnoTiles.air;
+		      invBagItems[5].id = EpicarnoTiles.air;
+		      invBagItems[6].id = EpicarnoTiles.air;
 		      invBagItems[7].id = EpicarnoTiles.air;
+		      
+		      invBagItems[8].id = EpicarnoTiles.air;
+		      invBagItems[9].id = EpicarnoTiles.air;
+		      invBagItems[10].id = EpicarnoTiles.air;
+		      invBagItems[11].id = EpicarnoTiles.air;
+		      invBagItems[12].id = EpicarnoTiles.air;
+		      invBagItems[13].id = EpicarnoTiles.air;
+		      invBagItems[14].id = EpicarnoTiles.air;
+		      invBagItems[15].id = EpicarnoTiles.air;
+		      
+		      invBagItems[16].id = EpicarnoTiles.air;
+		      invBagItems[17].id = EpicarnoTiles.air;
+		      invBagItems[18].id = EpicarnoTiles.air;
+		      invBagItems[19].id = EpicarnoTiles.air;
+		      invBagItems[20].id = EpicarnoTiles.air;
+		      invBagItems[21].id = EpicarnoTiles.air;
+		      invBagItems[22].id = EpicarnoTiles.air;
+		      invBagItems[23].id = EpicarnoTiles.air;
+		      
+		      invBagItems[24].id = EpicarnoTiles.air;
+		      invBagItems[25].id = EpicarnoTiles.air;
+		      invBagItems[26].id = EpicarnoTiles.air;
+		      invBagItems[27].id = EpicarnoTiles.air;
+		      invBagItems[28].id = EpicarnoTiles.air;
+		      invBagItems[29].id = EpicarnoTiles.air;
+		      invBagItems[30].id = EpicarnoTiles.air;
+		      invBagItems[31].id = EpicarnoTiles.air;
+		      
+		      invBagItems[32].id = EpicarnoTiles.shittybricks;
+		      invBagItems[33].id = EpicarnoTiles.ob;
+		      invBagItems[34].id = EpicarnoTiles.Zombie;
+		      invBagItems[35].id = EpicarnoTiles.rose;
+		      invBagItems[36].id = EpicarnoTiles.Skeleton;
+		      invBagItems[37].id = EpicarnoTiles.stone;
+		      invBagItems[38].id = EpicarnoTiles.leaf;
+		      invBagItems[39].id = EpicarnoTiles.air;
+		      
+
 	 }
 }

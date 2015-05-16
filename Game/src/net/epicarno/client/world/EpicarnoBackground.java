@@ -87,7 +87,7 @@ int[] TopBlock = EpicarnoComp.deco.GetBiomeDecorations(BiomeID, 1);
 		              }
 		            }
 		            catch (Exception localException2) {}
-		 System.out.println(y);
+	//	 System.out.println(y);
 		            if (new Random().nextInt(100) < 45) {
 		 	                        if(y > 15){
 		              this.block[x][y].id = Stone;
