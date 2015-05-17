@@ -77,11 +77,11 @@ public void tick()
     
      }
      
-     else if ((EpicarnoComp.isHipideHopping) && (!Inventory.isOpen))
+     else if ((EpicarnoComp.isHipideHopping) && ((!Inventory.isOpen) && (!EpicarnoComp.typing)))
      {
        this.isHipideHopping = true;
      }
-     if (((EpicarnoComp.isMoving) && (!Inventory.isOpen)))
+     if (((EpicarnoComp.isMoving)&& ((!Inventory.isOpen) && (!EpicarnoComp.typing))))
      {
        boolean canMove = false;
        if (EpicarnoComp.dir == this.movingSpeed) {

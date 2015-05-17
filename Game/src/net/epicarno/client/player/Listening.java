@@ -1,20 +1,70 @@
  package net.epicarno.client.player;
  import java.awt.event.KeyEvent;
- import java.awt.event.KeyListener;
- import java.awt.event.MouseEvent;
- import java.awt.event.MouseListener;
- import java.awt.event.MouseMotionListener;
- import java.awt.event.MouseWheelEvent;
- import java.awt.event.MouseWheelListener;
+import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
+import java.awt.event.MouseWheelEvent;
+import java.awt.event.MouseWheelListener;
 
 import net.epicarno.client.EpicarnoComp;
 import net.epicarno.client.generic.EpicarnoTiles;
+import net.epicarno.client.generic.MsgProcessor;
  
  public class Listening
    implements KeyListener, MouseListener, MouseMotionListener, MouseWheelListener
  {
-   public void keyPressed(KeyEvent e)
+   public String msg = "";
+   public String LastMsg = "";
+   public boolean Typing = false;
+   public MsgProcessor MsgP= new MsgProcessor();
+
+@SuppressWarnings("deprecation")
+public void keyPressed(KeyEvent e)
    {
+	EpicarnoComp.msg = msg;
+	if(Typing == true){
+		if( e.getKeyCode()!=KeyEvent.VK_BACK_SPACE){
+			String AllowedChars = "..,+=-_:;/\\*'()*&^%$£!¬`~#@:{}[]?<>|\"";
+			if( (Character.isDigit(e.getKeyChar())) ||  (Character.isLetter(e.getKeyChar())) || (Character.isSpace(e.getKeyChar()))  || (AllowedChars.indexOf(e.getKeyChar()   )
+					>0)){
+	msg = msg + e.getKeyChar();
+			}
+		}else{
+			//msg = msg -
+		if(msg.length() > 0){msg = msg.substring(0, msg.length()-1);}			
+		}
+	EpicarnoComp.msg = msg;
+	if( e.getKeyCode()==KeyEvent.VK_UP){
+		
+		msg = LastMsg;
+		EpicarnoComp.msg = msg;
+		
+		
+	}
+	if( e.getKeyCode()==KeyEvent.VK_ENTER){
+		Typing = false;
+		//System.out.print(msg.length());
+		
+		MsgP.MsgType(msg);
+		LastMsg = msg = msg.substring(0, msg.length()-1);;
+		msg = "";
+		
+		
+		
+	}
+
+	
+	}
+	
+	if( e.getKeyCode()==KeyEvent.VK_T){
+		Typing = true;
+		//msg = "";
+		//break;
+		
+	}
+	EpicarnoComp.typing = Typing;
+//	System.out.println(msg);
      int key = e.getKeyCode();
      switch (key)
      {
@@ -30,23 +80,35 @@ import net.epicarno.client.generic.EpicarnoTiles;
       EpicarnoComp.dir = -EpicarnoComp.player.movingSpeed;
        
        break;
+     case 84: 
+        // EpicarnoComp.isMoving = true;
+    
+    	 
+    	 break;
+    	 
+  //EpicarnoComp.sp = true;
+    	 
+       // EpicarnoComp.dir = -EpicarnoComp.player.movingSpeed;
+         
+        
+   
      case 32: 
 	//EpicarnoComp.sp = true;
        EpicarnoComp.isHipideHopping = true;
 
        break;
-     case 13: 
-       EpicarnoComp.sp = true;
-       break;
+
      case 69: 
 	if(EpicarnoComp.redoplay == true){
 		EpicarnoComp.redoplay = false;
 	}
+	if(!Typing){
        if (Inventory.isOpen) {
          Inventory.isOpen = false;
        } else {
          Inventory.isOpen = true;
        }
+	}
        break;
      }
    }

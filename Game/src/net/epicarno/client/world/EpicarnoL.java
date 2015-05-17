@@ -25,6 +25,8 @@ import net.epicarno.client.player.Inventory;
   public int[] Shrub;
   public int[] Wood;
   public int[] Leaves;
+  private final long PERIOD = 600L; // Adjust to suit timing
+  private long lastTime = System.currentTimeMillis() - PERIOD;
   public int[] BiomeOrder = new int[200];
    public static boolean placed = false;
    public TileProperties prop = new TileProperties();
@@ -308,7 +310,7 @@ for (int in = 0; in < new Random().nextInt(5) + 4; in++) {
                this.block[x][(y - 1)].id = EpicarnoTiles.air;
                }
                this.block[x][y].id = EpicarnoTiles.air;
-             //  placed = true;
+               placed = true;
                /*
                if((this.block[x][y].id != EpicarnoTiles.stone) && (this.block[x][y].id != EpicarnoTiles.wizningmud ) && (this.block[x][y].id != EpicarnoTiles.Grass )){
                this.block[x][y].id = EpicarnoTiles.air;
@@ -393,6 +395,15 @@ return EpicarnoTiles.air;
 	   
    }
    
+   public void onTick() {//Called every "Tick"
+	    long thisTime = System.currentTimeMillis();
+
+	    if ((thisTime - lastTime) >= PERIOD) {
+	        lastTime = thisTime;
+
+	        placed = false;
+	    }
+	}
    public void tick(int camX, int camY, int renW, int renH)
    {
      if (!Inventory.isOpen) {
@@ -402,8 +413,10 @@ return EpicarnoTiles.air;
 	//	 placed = false;
   	   building(camX, camY, renW, renH);
 	 }else if( (!EpicarnoComp.isLeftyDown) && (!EpicarnoComp.isRightyDown)){
-		 placed = false;
+		// placed = false;
 	 }
+  	 
+  	onTick();
      }
        //break;
      

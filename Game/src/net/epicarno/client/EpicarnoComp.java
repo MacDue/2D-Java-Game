@@ -2,7 +2,10 @@
  
  import java.applet.Applet;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Graphics;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Point;
 import java.awt.Rectangle;
@@ -14,7 +17,9 @@ import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
+import javax.swing.JTextField;
 
+import net.epicarno.client.generic.ChatBox;
 import net.epicarno.client.generic.EpicarnoTiles;
 import net.epicarno.client.generic.Info;
 import net.epicarno.client.mobs.Mob;
@@ -39,6 +44,8 @@ import net.epicarno.client.world.Sky;
    private static final long serialVersionUID = 1L;
    public static int pixelSize = 3;
 public static int dr= 0;
+public static String msg = "";
+public static boolean typing = false;
    public static int moveFronBorder = 0;
    public static double sX = moveFronBorder;
    public static double sY = moveFronBorder;
@@ -58,7 +65,7 @@ public static boolean sp = false;
    private Image screen;
 public static boolean playerlives = false;
 public static boolean redoplay = false;
-
+public static ChatBox Chat;
    public static EpicarnoL epicarnol;
    public static EpicarnoBackground back;
    public static Player player;
@@ -90,7 +97,7 @@ public static boolean redoBar = false;
      back = new EpicarnoBackground(2);
   //   player = new Player(EpicarnoTiles.tileSize, EpicarnoTiles.tileSize * 2);
      new EpicarnoTiles();
-
+Chat = new ChatBox();
 items = new InvItems();
 invent = new Inventory();
      
@@ -126,7 +133,7 @@ sp=true;
      
      frame = new JFrame();
 
-
+     
 frame.addComponentListener(new ComponentListener() {
     public void componentResized(ComponentEvent e) {
     	//player.y = 50.0D;
@@ -171,6 +178,14 @@ frame.addComponentListener(new ComponentListener() {
 if(playerlives == true){
 frame.setResizable(false);
 }
+frame.setTitle(name);
+frame.setResizable(false);
+frame.setLocationRelativeTo(null);
+//frame.getContentPane().setLayout(new GridLayout(0,1));
+//JTextField CMD = new JTextField("Text field 1");
+//CMD.set;
+//frame.getContentPane().add(CMD);
+frame.setDefaultCloseOperation(3);
      frame.pack();
 
      
@@ -180,10 +195,7 @@ screenSize.getHeight();
      realSize = new Dimension(frame.getWidth(), frame.getHeight());
 //frame.setSize(width,height);
 
-     frame.setTitle(name);
-     frame.setResizable(false);
-     frame.setLocationRelativeTo(null);
-     frame.setDefaultCloseOperation(3);
+
      frame.setVisible(true);
      
      epicarnocomp.start();
@@ -344,6 +356,9 @@ invent.render(g);
 //info.render(g);
      
 hud.render(g,50);
+//Listening Li = new Listening();
+
+Chat.Render(g,msg,typing);
      //h = invent.;
    g= getGraphics();
    int Teste = frame.getWidth();
