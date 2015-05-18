@@ -7,6 +7,7 @@ import java.util.Random;
 
 import net.epicarno.client.EpicarnoComp;
 import net.epicarno.client.generic.EpicarnoTiles;
+import net.epicarno.client.generic.Tiles.Tile;
 import net.epicarno.client.player.Inventory;
  
  public class EpicarnoBackground
@@ -20,7 +21,7 @@ public int ly = 0;
    {
      for (int x = 0; x < this.block.length; x++) {
        for (int y = 0; y < this.block[0].length; y++) {
-         this.block[x][y] = new GameBlocksEpicarno(new Rectangle(x * EpicarnoTiles.tileSize, y * EpicarnoTiles.tileSize, EpicarnoTiles.tileSize, EpicarnoTiles.tileSize), EpicarnoTiles.air);
+         this.block[x][y] = new GameBlocksEpicarno(new Rectangle(x * EpicarnoTiles.tileSize, y * EpicarnoTiles.tileSize, EpicarnoTiles.tileSize, EpicarnoTiles.tileSize), new Tile(EpicarnoTiles.air));
        }
      }
      gernerateELevel(BiomeID);
@@ -28,15 +29,16 @@ public int ly = 0;
    
    public void gernerateELevel(int BiomeID)
    {
-int[] TopBlock = EpicarnoComp.deco.GetBiomeDecorations(BiomeID, 1);
- int[] BottomBlock =EpicarnoComp.deco.GetBiomeDecorations(BiomeID, 7);
- int[] Stone = EpicarnoComp.deco.GetBiomeDecorations(BiomeID, 6);
- int[] BiomeFlower = EpicarnoComp.deco.GetBiomeDecorations(BiomeID, 2);
- int[] Shrub = EpicarnoComp.deco.GetBiomeDecorations(BiomeID, 3);
- int[] Wood =  EpicarnoComp.deco.GetBiomeDecorations(BiomeID, 4);
- int[] Leaves =  EpicarnoComp.deco.GetBiomeDecorations(BiomeID, 5);
+Tile TopBlock = EpicarnoComp.deco.GetBiomeDecorations(BiomeID, 1);
+ Tile BottomBlock =EpicarnoComp.deco.GetBiomeDecorations(BiomeID, 7);
+ Tile Stone = EpicarnoComp.deco.GetBiomeDecorations(BiomeID, 6);
+ Tile BiomeFlower = EpicarnoComp.deco.GetBiomeDecorations(BiomeID, 2);
+ Tile Shrub = EpicarnoComp.deco.GetBiomeDecorations(BiomeID, 3);
+ Tile Wood =  EpicarnoComp.deco.GetBiomeDecorations(BiomeID, 4);
+ Tile Leaves =  EpicarnoComp.deco.GetBiomeDecorations(BiomeID, 5);
  
  for (int x = 0; x < this.block.length; x++){
+	 //CBA WARING SHOULD SORTA USE TILES FOR TICKS BUT IT'S A BG SO NOTHING SHOULD BE HAPPENING
 	// System.out.println("TEST"+EpicarnoTiles.wood);
 	 for  (int y = 0; y < this.block[0].length; y++){
 		 if (y > worldH / 4)
@@ -44,8 +46,8 @@ int[] TopBlock = EpicarnoComp.deco.GetBiomeDecorations(BiomeID, 1);
 		            if (new Random().nextInt(100) > 20) {
 		              try
 		              {
-		                if (this.block[(x - 1)][(y - 1)].id == BottomBlock) {
-		                this.block[x][y].id = BottomBlock;
+		                if (this.block[(x - 1)][(y - 1)].id == BottomBlock.id) {
+		                this.block[x][y].id = BottomBlock.id;
 		                }
 		              }
 		              catch (Exception localException) {}
@@ -53,8 +55,8 @@ int[] TopBlock = EpicarnoComp.deco.GetBiomeDecorations(BiomeID, 1);
 		            if (new Random().nextInt(100) > 20) {
 		              try
 		              {
-		                if (this.block[(x - 1)][(y - 1)].id == Stone) {
-		                this.block[x][y].id = Stone;
+		                if (this.block[(x - 1)][(y - 1)].id == Stone.id) {
+		                this.block[x][y].id = Stone.id;
 		                }
 		              }
 		              catch (Exception localException) {}
@@ -62,8 +64,8 @@ int[] TopBlock = EpicarnoComp.deco.GetBiomeDecorations(BiomeID, 1);
 		            if (new Random().nextInt(100) > 30) {
 		              try
 		              {
-		                if (this.block[(x - 1)][(y - 1)].id == BottomBlock) {
-		                 this.block[x][y].id = BottomBlock;
+		                if (this.block[(x - 1)][(y - 1)].id == BottomBlock.id) {
+		                 this.block[x][y].id = BottomBlock.id;
 		                }
 		              }
 		              catch (Exception localException1) {}
@@ -71,28 +73,28 @@ int[] TopBlock = EpicarnoComp.deco.GetBiomeDecorations(BiomeID, 1);
 		            if (new Random().nextInt(100) > 30) {
 		              try
 		              {
-		                if (this.block[(x - 1)][(y - 1)].id == Stone) {
-		                 this.block[x][y].id = Stone;
+		                if (this.block[(x - 1)][(y - 1)].id == Stone.id) {
+		                 this.block[x][y].id = Stone.id;
 		                }
 		              }
 		              catch (Exception localException1) {}
 		            }
 		            try
 		            {
-		 	             if (this.block[x][(y - 1)].id == Stone) {
-		 		              this.block[x][y].id = Stone;
+		 	             if (this.block[x][(y - 1)].id == Stone.id) {
+		 		              this.block[x][y].id = Stone.id;
 		 		             }
-		              if (this.block[x][(y - 1)].id == BottomBlock) {
-		               this.block[x][y].id = BottomBlock;
+		              if (this.block[x][(y - 1)].id == BottomBlock.id) {
+		               this.block[x][y].id = BottomBlock.id;
 		              }
 		            }
 		            catch (Exception localException2) {}
 	//	 System.out.println(y);
 		            if (new Random().nextInt(100) < 45) {
 		 	                        if(y > 15){
-		              this.block[x][y].id = Stone;
+		              this.block[x][y].id = Stone.id;
 		 	                        }else{
-		 	                        	  this.block[x][y].id = BottomBlock;
+		 	                        	  this.block[x][y].id = BottomBlock.id;
 		 	                        }
 		            }
 		          }
@@ -102,21 +104,21 @@ int[] TopBlock = EpicarnoComp.deco.GetBiomeDecorations(BiomeID, 1);
 		        for (int x = 0; x < this.block[0].length; x++) {
 		          try
 		          {
-		            if ((this.block[x][(y + 1)].id == BottomBlock) && (this.block[x][y].id == EpicarnoTiles.air) && 
+		            if ((this.block[x][(y + 1)].id == BottomBlock.id) && (this.block[x][y].id == EpicarnoTiles.air) && 
 		              (new Random().nextInt(100) <= 7)) {
 		              for (int i = 0; i < new Random().nextInt(5) + 4; i++) {
-		                this.block[x][(y - i)].id = Wood;
+		                this.block[x][(y - i)].id = Wood.id;
 		 ly = y - i;
 		              }
 
 		 for (int in = 0; in < new Random().nextInt(5) + 4; in++) {
 		 //int ly = y - i;
 		              for (int i = 0; i < new Random().nextInt(5) + 2; i++) {
-		                this.block[x - i][(ly-in)].id = Leaves;
+		                this.block[x - i][(ly-in)].id = Leaves.id;
 		              }
 
 		              for (int i = 0; i < new Random().nextInt(5) + 2; i++) {
-		                this.block[x + i][(ly-in)].id = Leaves;
+		                this.block[x + i][(ly-in)].id = Leaves.id;
 		              }
 
 		 }
@@ -131,26 +133,26 @@ int[] TopBlock = EpicarnoComp.deco.GetBiomeDecorations(BiomeID, 1);
 		      
 		      for (int x = 0; x < this.block.length; x++) {
 		    	         for (int y = 0; y < this.block[0].length; y++) {
-		    	           if ((this.block[x][y].id == BottomBlock) && (this.block[x][(y - 1)].id == EpicarnoTiles.air)) {
-		    	             this.block[x][y].id = TopBlock;
+		    	           if ((this.block[x][y].id == BottomBlock.id) && (this.block[x][(y - 1)].id == EpicarnoTiles.air)) {
+		    	             this.block[x][y].id = TopBlock.id;
 		    	           }
 		    	         }
 		    	       }
 		      
 		           for (int x = 0; x < this.block.length; x++) {
 		    	         for (int y = 0; y < this.block[0].length; y++) {
-		    	           if ((this.block[x][y].id == TopBlock) && (this.block[x][(y - 1)].id == EpicarnoTiles.air) && 
+		    	           if ((this.block[x][y].id == TopBlock.id) && (this.block[x][(y - 1)].id == EpicarnoTiles.air) && 
 		    	  		             (new Random().nextInt(100) <= 20)) {
-		    	            this.block[x][y-1].id = Shrub;
+		    	            this.block[x][y-1].id = Shrub.id;
 		    	           }
 		    	         }
 		    	       }
 		           
 		           for (int x = 0; x < this.block.length; x++) {
 		    	         for (int y = 0; y < this.block[0].length; y++) {
-		    	           if ((this.block[x][y].id == TopBlock) && (this.block[x][(y - 1)].id == EpicarnoTiles.air) && 
+		    	           if ((this.block[x][y].id == TopBlock.id) && (this.block[x][(y - 1)].id == EpicarnoTiles.air) && 
 		    	  		             (new Random().nextInt(100) <= 4)) {
-		    	            this.block[x][y-1].id = BiomeFlower;
+		    	            this.block[x][y-1].id = BiomeFlower.id;
 		    	           }
 		    	         }
 		    	       }

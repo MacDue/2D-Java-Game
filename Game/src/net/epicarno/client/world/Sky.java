@@ -2,12 +2,15 @@
  
  import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.GradientPaint;
 import java.awt.Graphics;
 
 import net.epicarno.client.EpicarnoComp;
  
  public class Sky
  {
+	 
+	 //TODO RENDER SUN
    public int day = 0;
    public int night = 1;
    public int time = this.day;
@@ -93,7 +96,8 @@ import net.epicarno.client.EpicarnoComp;
    
    public void render(Graphics gr)
    {
-	
+	   //GradientPaint redtowhite = new GradientPaint(0,0,color.RED,100, 0,color.WHITE);
+	   //gr.setPaint(redtowhite);
      gr.setColor(new Color(this.r, this.g, this.b));
      gr.fillRect(0, 0, EpicarnoComp.pixel.width, EpicarnoComp.pixel.height);
    }

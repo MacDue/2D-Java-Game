@@ -35,6 +35,7 @@ public static int[] rose = {13,0};
 public static int[] BackGroundStone = {14,0};
 public static int[] BackGroundDirt = {15,0};
 public static int[] Skeleton = { 1 ,0};
+public static int[] FallingTile = { 1 ,0};
    public static int[] Player = { 0 ,1};
    public static BufferedImage GameTile;
    public static BufferedImage tile_cell;

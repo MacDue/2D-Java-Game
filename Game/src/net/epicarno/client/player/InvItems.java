@@ -59,8 +59,8 @@ public class InvItems {
 		      invBagItems[22].id = EpicarnoTiles.air;
 		      invBagItems[23].id = EpicarnoTiles.air;
 		      
-		      invBagItems[24].id = EpicarnoTiles.air;
-		      invBagItems[25].id = EpicarnoTiles.air;
+		      invBagItems[24].id = EpicarnoTiles.wildgrass;
+		      invBagItems[25].id = EpicarnoTiles.RealBR;
 		      invBagItems[26].id = EpicarnoTiles.air;
 		      invBagItems[27].id = EpicarnoTiles.air;
 		      invBagItems[28].id = EpicarnoTiles.air;

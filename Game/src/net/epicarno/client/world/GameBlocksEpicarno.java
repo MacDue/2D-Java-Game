@@ -6,18 +6,34 @@ import java.awt.image.RescaleOp;
 
 import net.epicarno.client.EpicarnoComp;
 import net.epicarno.client.generic.EpicarnoTiles;
+import net.epicarno.client.generic.Tiles.Tile;
  
  public class GameBlocksEpicarno
    extends Rectangle
  {
    private static final long serialVersionUID = 1L;
    public int[] id = { -1, -1 };
+   public Tile GameTile;
                //  public int lightLevel = 16;
    
-   public GameBlocksEpicarno(Rectangle size, int[] id)
+   public GameBlocksEpicarno(Rectangle size, Tile tile)
    {
-     setBounds(size);
-     this.id = id;
+	  setBounds(size);
+	  GameTile = tile;
+     this.id = GameTile.id;
+   }
+   
+   public void setTile(Tile gtile){
+	   //gtile.tick();
+	   GameTile = gtile;
+	   this.id = gtile.id;
+	   
+   }
+   
+   public void tick(){
+	   if (this.id == EpicarnoTiles.bling){
+		   System.out.println(this.x);
+	   }
    }
    
    @SuppressWarnings("unused")

@@ -1,6 +1,7 @@
 package net.epicarno.client.generic;
 
 import net.epicarno.client.EpicarnoComp;
+import net.epicarno.client.mobs.FallingTile;
 
 public class MsgProcessor {
 	//Temp 2 Arg Fix
@@ -32,6 +33,8 @@ public class MsgProcessor {
 				}
 			}
 			
+		}else{
+			System.out.println("<Player>: "+msg);
 		}
 	//	System.out.println(CMD);
 		//System.out.println(Arg0);
@@ -63,6 +66,36 @@ public class MsgProcessor {
 			
 			System.out.println("Player X :"+EpicarnoComp.player.x); 
 			System.out.println("Player Y :"+EpicarnoComp.player.y); 
+		}
+		
+		if(CMD.toUpperCase().contains("FALLINGTILE")  && (CMD.length() == "FALLINGTILE".length()) && (Arg0.length() > 0) && (Arg1.length() <= 0)){
+			
+			//System.out.println("Player X :"+EpicarnoComp.player.x); 
+		    EpicarnoComp.epicarnol.spawnMob(new FallingTile((int) EpicarnoComp.player.x, (int) EpicarnoComp.player.y - 60, EpicarnoTiles.tileSize, EpicarnoTiles.tileSize , EpicarnoComp.epicarnol.prop.getTileFromName(Arg0)));
+
+			
+			//System.out.println("Player Y :"+EpicarnoComp.player.y); 
+		}else 		if(CMD.toUpperCase().contains("FALLINGTILE")  && (CMD.length() == "FALLINGTILE".length()) && (Arg0.length() > 0 ) && (Arg1.length() > 0)){
+			
+			//System.out.println("Player X :"+EpicarnoComp.player.x); 
+			
+			try{
+				int Max = Integer.parseInt(Arg1);
+				
+				for (int i=0;i<Max;i++){
+					
+					if(((int) EpicarnoComp.player.y - 60-(i*16)) > 0){
+			    EpicarnoComp.epicarnol.spawnMob(new FallingTile((int) EpicarnoComp.player.x, (int) EpicarnoComp.player.y - 60-(i*16), EpicarnoTiles.tileSize, EpicarnoTiles.tileSize , EpicarnoComp.epicarnol.prop.getTileFromName(Arg0)));
+				}
+				}
+			
+			}catch(NumberFormatException exception){
+				 System.out.println("invalid number"); 
+			}
+			
+
+			
+			//System.out.println("Player Y :"+EpicarnoComp.player.y); 
 		}
 		
 		

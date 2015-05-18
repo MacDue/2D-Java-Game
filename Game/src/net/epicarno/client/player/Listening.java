@@ -36,8 +36,9 @@ public void keyPressed(KeyEvent e)
 		}
 	EpicarnoComp.msg = msg;
 	if( e.getKeyCode()==KeyEvent.VK_UP){
-		
+		if(LastMsg.length() > 0){
 		msg = LastMsg;
+		}
 		EpicarnoComp.msg = msg;
 		
 		
@@ -58,7 +59,10 @@ public void keyPressed(KeyEvent e)
 	}
 	
 	if( e.getKeyCode()==KeyEvent.VK_T){
+		
+		if(!EpicarnoComp.invent.isOpen){
 		Typing = true;
+		}
 		//msg = "";
 		//break;
 		
@@ -95,6 +99,54 @@ public void keyPressed(KeyEvent e)
      case 32: 
 	//EpicarnoComp.sp = true;
        EpicarnoComp.isHipideHopping = true;
+
+       break;
+       
+     case 49: 
+	//EpicarnoComp.sp = true;
+    	 Inventory.soming = 0;
+
+       break;
+       
+     case 50: 
+	//EpicarnoComp.sp = true;
+    	 Inventory.soming =1;
+
+       break;
+       
+     case 51: 
+	//EpicarnoComp.sp = true;
+    	 Inventory.soming = 2;
+
+       break;
+       
+     case 52: 
+	//EpicarnoComp.sp = true;
+    	 Inventory.soming = 3;
+
+       break;
+       
+     case 53: 
+	//EpicarnoComp.sp = true;
+    	 Inventory.soming =4;
+
+       break;
+       
+     case 54: 
+	//EpicarnoComp.sp = true;
+    	 Inventory.soming =5;
+
+       break;
+       
+     case 55: 
+	//EpicarnoComp.sp = true;
+    	 Inventory.soming = 6;
+
+       break;
+       
+     case 56: 
+	//EpicarnoComp.sp = true;
+    	 Inventory.soming =7;
 
        break;
 

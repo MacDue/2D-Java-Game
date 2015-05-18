@@ -43,26 +43,55 @@ public class TileProperties {
 		
 	}
 	
-	 public static int[] air = { -1, -1 };
-	   public static int[] wizningmud = new int[9];
-	   public static int[] Grass = { 1,0 };
-	   public static int[] seasand = { 2 ,0};
-	   public static int[] bedrock = { -1, -1 };
-	   public static int[] wood = { 4,0 };
-	   public static int[] planks = { 5,0 };
-	   public static int[] bling = { 6,0 };
-	   public static int[] bricks = { 7,0 };
-	   public static int[] shittybricks = { 8,0 };
-	   public static int[] Glass = { 9,0 };
-	   public static int[] ob = { 3,0 };
-	   public static int[] Zombie = { 1 ,0};
-	   public static int[] leaf = {10,0};
-	public static int[] stone = {11,0};
-	public static int[] wildgrass = {12,0};
-	public static int[] rose = {13,0};
-	public static int[] BackGroundStone = {14,0};
-	public static int[] BackGroundDirt = {15,0};
 	
+	public boolean isFallingTile(int[] id){
+
+		if (id == EpicarnoTiles.seasand){
+			return true;
+		
+		
+		}else {
+			return false;
+		}
+
+		
+	}
+	
+	public boolean isReplaceable(int[] id){
+
+		if (id == EpicarnoTiles.wildgrass){
+			return true;
+		
+		
+		}else if(id == EpicarnoTiles.rose){
+			return true;
+		
+		}else if(id == EpicarnoTiles.air){
+			return true;
+		
+		}else {
+			return false;
+		}
+
+		
+	}
+	
+	public boolean isPlant(int[] id){
+
+		if (id == EpicarnoTiles.wildgrass){
+			return true;
+		
+		
+		}else if(id == EpicarnoTiles.rose){
+			return true;
+		
+		
+		}else {
+			return false;
+		}
+
+		
+	}
 	//Temp Fix
 	public String getTileName(int[] id) {
 
@@ -104,6 +133,46 @@ public class TileProperties {
 			return "Sand";
 		} else {
 			return "Unknown Tile";
+		}
+
+	}
+	
+	public int[] getTileFromName(String name) {
+
+		if (name.toLowerCase().equals("rose")) {
+			return EpicarnoTiles.rose;
+		} else if (name.toLowerCase().equals("pinkleaves")) {
+			return EpicarnoTiles.leaf;
+		}else if (name.toLowerCase().equals("wildgrass")) {
+			return EpicarnoTiles.wildgrass;
+		}else if (name.toLowerCase().equals("wood")) {
+			return EpicarnoTiles.wood;
+		} else if (name.toLowerCase().equals("air")) {
+			return EpicarnoTiles.air;
+		} else if (name.toLowerCase().equals("stone")) {
+			return EpicarnoTiles.stone;
+		} else if (name.toLowerCase().equals("grass")) {
+			return EpicarnoTiles.Grass;
+		} else if (name.toLowerCase().equals("mud")) {
+			return EpicarnoTiles.wizningmud;
+		} else if (name.toLowerCase().equals("dragonglass")) {
+			return EpicarnoTiles.ob;
+		} else if (name.toLowerCase().equals("goldblock")) {
+			return EpicarnoTiles.bling;
+		}else if (name.toLowerCase().equals("woodenplanks")) {
+			return EpicarnoTiles.planks;
+		}else if (name.toLowerCase().equals("glass")) {
+			return EpicarnoTiles.Glass;
+		}else if (name.toLowerCase().equals("bricks")) {
+			return EpicarnoTiles.bricks;
+		}else if (name.toLowerCase().equals("cstone")) {
+			return EpicarnoTiles.shittybricks;
+		} else if (name.toLowerCase().equals("sand")) {
+			return EpicarnoTiles.seasand;
+		} else if (name.toLowerCase().equals("bedrock")) {
+			return EpicarnoTiles.RealBR;
+		}else {
+			return EpicarnoTiles.seasand;
 		}
 
 	}
