@@ -1,6 +1,7 @@
 package net.epicarno.client.player;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
@@ -50,14 +51,18 @@ public class PlayerHudRenderer    extends Rectangle
 	   
 	   public void renderP(Graphics g)
 	   {
-		 // g.drawImage(EpicarnoTiles.tile_select, 100, 100, 0, 0, 100, 100, 0, 0, null);
-		
-		  // System.out.println('X'+EpicarnoComp.mse.x / EpicarnoComp.pixelSize );
-		  // System.out.println( 'Y'+EpicarnoComp.mse.y/ EpicarnoComp.pixelSize );
 		   g.setColor(new Color(237, 55, 76, 200));
 		   //line(( (int)EpicarnoComp.player.x - (int)EpicarnoComp.sX)+6, (int)EpicarnoComp.player.y - (int)EpicarnoComp.sY +10, EpicarnoComp.mse.x / EpicarnoComp.pixelSize , EpicarnoComp.mse.y/ EpicarnoComp.pixelSize );
 		   g.drawLine(( (int)EpicarnoComp.player.x - (int)EpicarnoComp.sX)+6, (int)EpicarnoComp.player.y - (int)EpicarnoComp.sY +10, EpicarnoComp.mse.x / EpicarnoComp.pixelSize , EpicarnoComp.mse.y/ EpicarnoComp.pixelSize );
 		  
+		 // g.drawImage(EpicarnoTiles.tile_select, 100, 100, 0, 0, 100, 100, 0, 0, null);
+		   g.setColor(new Color(255, 255, 255, 255));
+			 g.setFont(new Font("", Font.PLAIN, 10)); 
+
+			 g.drawString("Ben Maxwell && The Mysterious NullPointerException", 1, 20);
+		  // System.out.println('X'+EpicarnoComp.mse.x / EpicarnoComp.pixelSize );
+		  // System.out.println( 'Y'+EpicarnoComp.mse.y/ EpicarnoComp.pixelSize );
+		
 	       //g.drawImage(EpicarnoTiles.tile_select, this.x - 1, this.y - 1, this.width + 2, this.height + 2, null);
 	     
 	   }

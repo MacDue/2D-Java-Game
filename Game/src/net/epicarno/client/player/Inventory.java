@@ -110,9 +110,7 @@ import net.epicarno.client.generic.EpicarnoTiles;
    public void render(Graphics h)
    {
 
- h.setColor(new Color(167, 255, 200, 60));
 
-	 h.drawString("Ben Maxwell Java Test Project", 1, 20);
      for (int i = 0; i < invBar.length; i++)
      {
        boolean isSelected = false;

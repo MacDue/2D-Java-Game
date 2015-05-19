@@ -5,6 +5,7 @@ import java.awt.BorderLayout;
 import java.awt.Canvas;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Point;
 import java.awt.Rectangle;
@@ -55,7 +56,7 @@ public class EpicarnoComp extends Applet implements Runnable, KeyListener
 	public static Dimension pixel = new Dimension(size.width / pixelSize,
 			size.height / pixelSize);
 	public static Point mse = new Point(0, 0);
-	public static String name = "Ben Maxwell Test Java Project";
+	public static String name = "Ben Maxwell && The Mysterious NullPointerException";
 	public static boolean isRunning = false;
 	public static boolean isMoving = false;
 	public static boolean isHipideHopping = false;
@@ -210,8 +211,10 @@ public class EpicarnoComp extends Applet implements Runnable, KeyListener
 		// frame.setSize(width,height);
 
 		frame.setVisible(true);
-		frame.createBufferStrategy(4);
-
+		
+		
+		// create a strategy that uses two buffers, or is double buffered.
+	
 		epicarnocomp.start();
 	}
 
@@ -367,41 +370,52 @@ public class EpicarnoComp extends Applet implements Runnable, KeyListener
 
 	}
 
-	public void render() {
-		//Graphics t = this.screen.getGraphics();
-		Graphics b = this.screen.getGraphics();
-		// Graphics h = this.screen.getGraphics();
-		sky.render(b);
+	public void render(BufferStrategy strategy) {
+		this.screen = new BufferedImage ((frame.getWidth() / pixelSize),
+				(frame.getHeight() / pixelSize), BufferedImage.TYPE_INT_RGB);
+		Graphics g = this.screen.getGraphics();
+		
+	    BufferedImage bi = (BufferedImage) createImage((frame.getWidth() / pixelSize),
+				(frame.getHeight() / pixelSize));
+	      Graphics2D big = bi.createGraphics();
+		
+		sky.render(big);
 
-		back.render(b, (int) sX, (int) sY, pixel.width / EpicarnoTiles.tileSize
+		back.render(big, (int) sX, (int) sY, pixel.width / EpicarnoTiles.tileSize
 				+ 4, pixel.height / EpicarnoTiles.tileSize + 4);
 
 		// for (int i = 0; i < tile.toArray().length; i++) {
 		// ((Tile)tile.get(i)).render(g);
 		// }
 
-		epicarnol.render(b, (int) sX, (int) sY, pixel.width
+		epicarnol.render(big, (int) sX, (int) sY, pixel.width
 				/ EpicarnoTiles.tileSize + 4, pixel.height
 				/ EpicarnoTiles.tileSize + 4);
 		if (playerlives == true) {
-			hud.renderP(b);
-			player.render(b);
+			hud.renderP(big);
+			player.render(big);
 		}
 		for (int i = 0; i < mob.toArray().length; i++) {
-			((Mob) mob.get(i)).render(b);
+			((Mob) mob.get(i)).render(big);
 		}
 
 		// invent.render(h);
 		// invent.render(g);
-		invent.render(b);
+		invent.render(big);
 		// info.render(g);
 
-		hud.render(b, 50);
+		hud.render(big, 50);
 		// Listening Li = new Listening();
 
-		Chat.Render(b, msg, typing);
+		Chat.Render(big, msg, typing);
+		
+		
+		//Graphics t = this.screen.getGraphics();
+		//Graphics b = strategy.getDrawGraphics();
+		// Graphics h = this.screen.getGraphics();
+
 		// h = invent.;
-		b = getGraphics();
+		g = getGraphics();
 		int Teste = frame.getWidth();
 		Teste = Teste / 2;
 		Teste = Teste - 400;
@@ -410,20 +424,20 @@ public class EpicarnoComp extends Applet implements Runnable, KeyListener
 		Testy = Testy / 2;
 		Testy = Testy - 400;
 		// Teste =0;
-		b.drawImage(this.screen, Teste, 0, (frame.getWidth()),
+		g.drawImage(bi, Teste, 0, (frame.getWidth()),
 				frame.getHeight(), 0, 0, pixel.width, pixel.height, null);
 
 		// invent.render(g);
 
 		// h.drawImage(this.screen, 0, 0, (frame.getWidth()), frame.getHeight(),
 		// 0, 0, pixel.width, pixel.height, null);
-		b.dispose();
+		big.dispose();
+		g.dispose();
 	}
 
 	public void renderBar() {
 
-		this.screen = new BufferedImage ((frame.getWidth() / pixelSize),
-				(frame.getHeight() / pixelSize), BufferedImage.TYPE_INT_RGB);
+	
 
 		// invent.render(h);
 		// h= getGraphics();
@@ -435,19 +449,71 @@ public class EpicarnoComp extends Applet implements Runnable, KeyListener
 		// h.dispose();
 	}
 
-	public void run() {
+	public void run(double delta) {
 		renderBar();
+		
+	       double nextTime = (double)System.nanoTime() / 1000000000.0;
+	        double maxTimeDiff = 0.5;
+	        int skippedFrames = 1;
+	        int maxSkippedFrames = 5;
 		while (isRunning) {
-			tick();
+			
+			double currTime = (double)System.nanoTime() / 1000000000.0;
+            if((currTime - nextTime) > maxTimeDiff) nextTime = currTime;
+            if(currTime >= nextTime)
+            {
+                // assign the time for the next update
+                nextTime += delta;
+                tick();
+                if((currTime < nextTime) || (skippedFrames > maxSkippedFrames))
+                {
+                	BufferStrategy strategy = frame.getBufferStrategy();
+                	render(strategy);
+        			invRedraw();
+                    skippedFrames = 1;
+                }
+                else
+                {
+                    skippedFrames++;
+                }
+            }
+            else
+            {
+                // calculate the time to sleep
+                int sleepTime = (int)(1000.0 * (nextTime - currTime));
+                // sanity check
+                if(sleepTime > 0)
+                {
+                    // sleep until the next update
+                    try
+                    {
+                        Thread.sleep(sleepTime);
+                    }
+                    catch(InterruptedException e)
+                    {
+                        // do nothing
+                    }
+                }
+            }
+			//Test
+			
+			//Test
+			
+			
+			
+			
+			//tick();
 			// myCanvas.createBufferStrategy(2);
 	       //  BufferStrategy strategy = myCanvas.getBufferStrategy();
-			render();
-			invRedraw();
+		//	frame.createBufferStrategy(2);
+			//epicarnol.block
+			  // get a reference to the strategy object, for use in our render method
+			  // this isn't necessary but it eliminates a call during rendering.
+			
+			  ;
+		
 			// renderBar();
-			try {
-				Thread.sleep(5L);
-			} catch (Exception localException) {
-			}
+		
 		}
 	}
 
@@ -473,5 +539,11 @@ public class EpicarnoComp extends Applet implements Runnable, KeyListener
 
 		}
 
+	}
+
+	@Override
+	public void run() {
+		run((1.0/250.0));
+		
 	}
 }

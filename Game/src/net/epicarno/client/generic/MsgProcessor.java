@@ -62,10 +62,19 @@ public class MsgProcessor {
 		}
 	}
 		
-		if(CMD.toUpperCase().contains("GETPLAYERPOS")  && CMD.length() == "GETPLAYERPOS".length()){
+		if(CMD.toUpperCase().contains("GETPLAYERPOS")  && (CMD.length() == "GETPLAYERPOS".length()) && (Arg0.length() <= 0) ){
 			
 			System.out.println("Player X :"+EpicarnoComp.player.x); 
 			System.out.println("Player Y :"+EpicarnoComp.player.y); 
+		}
+		else if  (CMD.toUpperCase().contains("GETPLAYERPOS")  && (CMD.length() == "GETPLAYERPOS".length()) && (Arg0.length() > 0) ){
+			if(Arg0.toUpperCase().contains("TILE")  && (Arg0.length() == "TILE".length())){
+				System.out.println("Player Tile X :"+(int)(EpicarnoComp.player.x/16)); 
+				System.out.println("Player Tile Y :"+(int)(EpicarnoComp.player.y/16)); 
+			}else{
+				System.out.println("Player X :"+EpicarnoComp.player.x); 
+				System.out.println("Player Y :"+EpicarnoComp.player.y); 
+			}
 		}
 		
 		if(CMD.toUpperCase().contains("FALLINGTILE")  && (CMD.length() == "FALLINGTILE".length()) && (Arg0.length() > 0) && (Arg1.length() <= 0)){

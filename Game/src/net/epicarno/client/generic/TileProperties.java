@@ -92,6 +92,37 @@ public class TileProperties {
 
 		
 	}
+	
+	public boolean isSeethrough(int[] id){
+
+		if (id == EpicarnoTiles.wildgrass){
+			return true;
+		
+		
+		}else if(id == EpicarnoTiles.rose){
+			return true;
+		
+		
+		}else if(id == EpicarnoTiles.air){
+			return true;
+		
+		
+		}else if(id == EpicarnoTiles.Glass){
+			return true;
+		
+		
+		}else if(id == EpicarnoTiles.leaf){
+			return true;
+		
+		
+		}else {
+			return false;
+		}
+
+		
+	}
+	
+	
 	//Temp Fix
 	public String getTileName(int[] id) {
 
@@ -120,7 +151,7 @@ public class TileProperties {
 		} else if (id == EpicarnoTiles.ob) {
 			return "Dragon Glass";
 		} else if (id == EpicarnoTiles.bling) {
-			return "Gold Block";
+			return "Gold Tile";
 		} else if (id == EpicarnoTiles.planks) {
 			return "Wooden Planks";
 		} else if (id == EpicarnoTiles.Glass) {
@@ -157,7 +188,7 @@ public class TileProperties {
 			return EpicarnoTiles.wizningmud;
 		} else if (name.toLowerCase().equals("dragonglass")) {
 			return EpicarnoTiles.ob;
-		} else if (name.toLowerCase().equals("goldblock")) {
+		} else if (name.toLowerCase().equals("goldtile")) {
 			return EpicarnoTiles.bling;
 		}else if (name.toLowerCase().equals("woodenplanks")) {
 			return EpicarnoTiles.planks;

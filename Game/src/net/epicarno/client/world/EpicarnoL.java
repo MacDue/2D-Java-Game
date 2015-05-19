@@ -1,9 +1,12 @@
 package net.epicarno.client.world;
  
- import java.awt.Color;
+ import java.awt.BasicStroke;
+import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.awt.Stroke;
 import java.util.Random;
 
 import net.epicarno.client.EpicarnoComp;
@@ -18,28 +21,28 @@ import net.epicarno.client.player.Inventory;
  
  public class EpicarnoL
  {
-   public static int worldH = 50;
+   public static int worldH = 250;
    public static int worldW = 10000;
-  public Tile TopBlock;
-  public Tile BottomBlock;
-  public  Tile Stone;
-  public Tile BiomeFlower;
-  public Tile Shrub;
-  public Tile Wood;
-  public Tile Leaves;
-  private final long PERIOD = 600L; // Adjust to suit timing
+  public int[] TopBlock;
+  public int[] BottomBlock;
+  public  int[] Stone;
+  public int[] BiomeFlower;
+  public int[] Shrub;
+  public int[] Wood;
+  public int[] Leaves;
+  private final long PERIOD = 400L; // Adjust to suit timing
   private long lastTime = System.currentTimeMillis() - PERIOD;
   public int[] BiomeOrder = new int[200];
    public static boolean placed = false;
    public TileProperties prop = new TileProperties();
 public int ly = 0;
-   public GameBlocksEpicarno[][] block = new GameBlocksEpicarno[worldW][worldH];
+   public GameTilesEpicarno[][] block = new GameTilesEpicarno[worldW][worldH];
    
    public EpicarnoL(int BiomeID)
    {
      for (int x = 0; x < this.block.length; x++) {
        for (int y = 0; y < this.block[0].length; y++) {
-         this.block[x][y] = new GameBlocksEpicarno(new Rectangle(x * EpicarnoTiles.tileSize, y * EpicarnoTiles.tileSize, EpicarnoTiles.tileSize, EpicarnoTiles.tileSize), new Tile(EpicarnoTiles.air));
+         this.block[x][y] = new GameTilesEpicarno(new Rectangle(x * EpicarnoTiles.tileSize, y * EpicarnoTiles.tileSize, EpicarnoTiles.tileSize, EpicarnoTiles.tileSize), new Tile(EpicarnoTiles.air,0,0));
        }
      }
      gernerateELevel(BiomeID);
@@ -97,63 +100,63 @@ public int ly = 0;
 	
 		 //SwitchBiome(BiomeID);
 		 if (y > worldH / 4)
-		          {
-		            if (new Random().nextInt(100) > 20) {
-		              try
-		              {
-		                if (this.block[(x - 1)][(y - 1)].id == BottomBlock.id) {
-		                this.block[x][y].setTile(BottomBlock); 
-		                }
-		              }
-		              catch (Exception localException) {}
-		            }
-		            if (new Random().nextInt(100) > 20) {
-		              try
-		              {
-		                if (this.block[(x - 1)][(y - 1)].id == Stone.id) {
-		                this.block[x][y].setTile(Stone);
-		                }
-		              }
-		              catch (Exception localException) {}
-		            }
-		            if (new Random().nextInt(100) > 30) {
-		              try
-		              {
-		                if (this.block[(x - 1)][(y - 1)].id == BottomBlock.id) {
-		                 this.block[x][y].setTile(BottomBlock);
-		                }
-		              }
-		              catch (Exception localException1) {}
-		            }
-		            if (new Random().nextInt(100) > 30) {
-		              try
-		              {
-		                if (this.block[(x - 1)][(y - 1)].id == Stone.id) {
-		                 this.block[x][y].setTile(Stone) ;
-		                }
-		              }
-		              catch (Exception localException1) {}
-		            }
-		            try
-		            {
-		 	             if (this.block[x][(y - 1)].id == Stone.id) {
-		 		              this.block[x][y].setTile(Stone);
-		 		             }
-		              if (this.block[x][(y - 1)].id == BottomBlock.id) {
-		               this.block[x][y].setTile(BottomBlock);
-		              }
-		            }
-		            catch (Exception localException2) {}
-	//	 System.out.println(y);
-		            if (new Random().nextInt(100) < 45) {
-		 	                        if(y > 15){
-		              this.block[x][y].setTile(Stone) ;
-		              //System.out.println(Stone.id);
-		 	                        }else{
-		 	                        	  this.block[x][y].setTile(BottomBlock);
-		 	                        }
-		            }
-		          }
+         {
+           if (new Random().nextInt(worldH*2) >(worldH*0.4)) {
+             try
+             {
+               if (this.block[(x - 1)][(y - 1)].id == BottomBlock) {
+               this.block[x][y].setTile(new Tile(BottomBlock,x,y)); 
+               }
+             }
+             catch (Exception localException) {}
+           }
+           if (new Random().nextInt(worldH*2) > (worldH*0.4)) {
+             try
+             {
+               if (this.block[(x - 1)][(y - 1)].id == Stone) {
+               this.block[x][y].setTile(new Tile(Stone,x,y));
+               }
+             }
+             catch (Exception localException) {}
+           }
+           if (new Random().nextInt(worldH*2) > (worldH*0.6)) {
+             try
+             {
+               if (this.block[(x - 1)][(y - 1)].id == BottomBlock) {
+                this.block[x][y].setTile(new Tile(BottomBlock,x,y));
+               }
+             }
+             catch (Exception localException1) {}
+           }
+           if (new Random().nextInt(worldH*2 ) > (worldH*0.6)) {
+             try
+             {
+               if (this.block[(x - 1)][(y - 1)].id == Stone) {
+                this.block[x][y].setTile(new Tile(Stone,x,y)) ;
+               }
+             }
+             catch (Exception localException1) {}
+           }
+           try
+           {
+	             if (this.block[x][(y - 1)].id == Stone) {
+		              this.block[x][y].setTile(new Tile(Stone,x,y));
+		             }
+             if (this.block[x][(y - 1)].id == BottomBlock) {
+              this.block[x][y].setTile(new Tile(BottomBlock,x,y));
+             }
+           }
+           catch (Exception localException2) {}
+//	 System.out.println(y);
+           if (new Random().nextInt((worldH*2)) < (worldH*0.9)) {
+	                        if(y > (worldH*0.3)-(worldH*0.03)){
+             this.block[x][y].setTile(new Tile(Stone,x,y)) ;
+             //System.out.println(Stone.id);
+	                        }else{
+	                        	  this.block[x][y].setTile(new Tile(BottomBlock,x,y));
+	                        }
+           }
+         }
 		 //Here
 		 
 		 
@@ -173,10 +176,10 @@ public int ly = 0;
      for (int y = 0; y < this.block[0].length; y++) {
        try
        {
-         if ((this.block[x][(y + 1)].id == BottomBlock.id) && (this.block[x][y].id == EpicarnoTiles.air) && 
+         if ((this.block[x][(y + 1)].id == BottomBlock) && (this.block[x][y].id == EpicarnoTiles.air) && 
            (new Random().nextInt(100) <= 7)) {
            for (int i = 0; i < new Random().nextInt(5) + 4; i++) {
-             this.block[x][(y - i)].setTile(Wood);
+             this.block[x][(y - i)].setTile( new Tile(Wood,x,y));
 ly = y - i;
            }
 
@@ -184,13 +187,13 @@ for (int in = 0; in < new Random().nextInt(5) + 4; in++) {
 //int ly = y - i;
            for (int i = 0; i < new Random().nextInt(5) + 2; i++) {
         	   if( this.block[x - i][(ly-in)].id == EpicarnoTiles.air){
-             this.block[x - i][(ly-in)].setTile(Leaves);
+             this.block[x - i][(ly-in)].setTile(new Tile(Leaves,x,y));
         	   }
            }
 
            for (int i = 0; i < new Random().nextInt(5) + 2; i++) {
         	   if(  this.block[x + i][(ly-in)].id == EpicarnoTiles.air){
-             this.block[x + i][(ly-in)].setTile(Leaves);
+             this.block[x + i][(ly-in)].setTile(new Tile(Leaves,x,y));
         	   }
            }
 
@@ -215,8 +218,8 @@ for (int in = 0; in < new Random().nextInt(5) + 4; in++) {
 	//	 System.out.println("NO"+BiomeNum);
 	 }
  	         for (int y = 0; y < this.block[0].length; y++) {
- 	           if ((this.block[x][y].id == BottomBlock.id) && (this.block[x][(y - 1)].id == EpicarnoTiles.air)) {
- 	             this.block[x][y].setTile(TopBlock); 
+ 	           if ((this.block[x][y].id == BottomBlock) && (this.block[x][(y - 1)].id == EpicarnoTiles.air)) {
+ 	             this.block[x][y].setTile(new Tile(TopBlock,x,y)); 
  	           }
  	         }
  	       }
@@ -231,9 +234,9 @@ for (int in = 0; in < new Random().nextInt(5) + 4; in++) {
 	//	 System.out.println("NO"+BiomeNum);
 	 }
  	         for (int y = 0; y < this.block[0].length; y++) {
- 	           if ((this.block[x][y].id == TopBlock.id) && (this.block[x][(y - 1)].id == EpicarnoTiles.air) && 
+ 	           if ((this.block[x][y].id == TopBlock) && (this.block[x][(y - 1)].id == EpicarnoTiles.air) && 
  	  		             (new Random().nextInt(100) <= 20)) {
- 	            this.block[x][y-1].setTile(Shrub);
+ 	            this.block[x][y-1].setTile(new Tile(Shrub,x,y));
  	           }
  	         }
  	       }
@@ -248,9 +251,9 @@ for (int in = 0; in < new Random().nextInt(5) + 4; in++) {
 	//	 System.out.println("NO"+BiomeNum);
 	 }
  	         for (int y = 0; y < this.block[0].length; y++) {
- 	           if ((this.block[x][y].id == TopBlock.id) && (this.block[x][(y - 1)].id == EpicarnoTiles.air) && 
+ 	           if ((this.block[x][y].id == TopBlock) && (this.block[x][(y - 1)].id == EpicarnoTiles.air) && 
  	  		             (new Random().nextInt(100) <= 4)) {
- 	            this.block[x][y-1].setTile(BiomeFlower);
+ 	            this.block[x][y-1].setTile(new Tile(BiomeFlower,x,y));
  	           }
  	         }
  	       }
@@ -266,12 +269,12 @@ for (int in = 0; in < new Random().nextInt(5) + 4; in++) {
 	 }
      	        for (int y = 0; y < this.block[0].length; y++) {
      	          if ((x == 0) || (y == 0) || (x == this.block.length - 1) ) {
-     	          this.block[x][y].setTile(new Tile(EpicarnoTiles.bedrock));
+     	          this.block[x][y].setTile(new Tile(EpicarnoTiles.bedrock,x,y));
      	         }
      	          else if((y == this.block[0].length - 1)){
-     	        	 this.block[x][y].setTile(new Tile(EpicarnoTiles.RealBR));
+     	        	 this.block[x][y].setTile(new Tile(EpicarnoTiles.RealBR,x,y));
      	        	 Random rand = new Random();
-     	        	this.block[x][y-(rand.nextInt(3)+1)].setTile(new Tile(EpicarnoTiles.RealBR));
+     	        	this.block[x][y-(rand.nextInt(3)+1)].setTile(new Tile(EpicarnoTiles.RealBR,x,y));
      	          }
      	     }
      	     }
@@ -286,6 +289,7 @@ for (int in = 0; in < new Random().nextInt(5) + 4; in++) {
    
    public void building(int camX, int camY, int renW, int renH)
    {
+	
 	  //boolean placed = false;
      if (((EpicarnoComp.isLeftyDown) || (EpicarnoComp.isRightyDown)) && placed == false) {
        for (int x = camX / EpicarnoTiles.tileSize; x < camX / EpicarnoTiles.tileSize + renW; x++) {
@@ -316,6 +320,8 @@ for (int in = 0; in < new Random().nextInt(5) + 4; in++) {
                }else{
                this.block[x][(y - 1)].id = EpicarnoTiles.air;
                }
+               
+               /*
                int I = 1;
                while(prop.isFallingTile(this.block[x][(y - I)].id)){
    if (prop.isFallingTile(this.block[x][(y - I)].id)) {
@@ -326,7 +332,8 @@ for (int in = 0; in < new Random().nextInt(5) + 4; in++) {
                }
    I ++;
                }
-               this.block[x][y].id = EpicarnoTiles.air;
+               */
+               this.block[x][y].setTile(new Tile(EpicarnoTiles.air, x, y));
                placed = true;
                /*
                if((this.block[x][y].id != EpicarnoTiles.stone) && (this.block[x][y].id != EpicarnoTiles.wizningmud ) && (this.block[x][y].id != EpicarnoTiles.Grass )){
@@ -379,14 +386,9 @@ if((sid == EpicarnoTiles.Skeleton)  && (!placed)){
              }
          //    }
 if( ((this.block[x][(y + 1)].id  != EpicarnoTiles.air) || (this.block[x][(y - 1)].id  != EpicarnoTiles.air) || (this.block[(x + 1)][(y)].id  != EpicarnoTiles.air) || (this.block[(x - 1)][(y)].id  != EpicarnoTiles.air)) && ((this.block[x][(y + 1)].id  != EpicarnoTiles.bedrock) || (this.block[x][(y - 1)].id  != EpicarnoTiles.bedrock) || (this.block[(x + 1)][(y)].id  != EpicarnoTiles.bedrock) || (this.block[(x - 1)][(y)].id  != EpicarnoTiles.bedrock))){
-             this.block[x][y].setTile(new Tile(sid));
+             this.block[x][y].setTile(new Tile(sid,x,y));
              
-             if( prop.isFallingTile(this.block[x][y].id)){
-            	 int[] FallingID =  this.block[x][y].id;
-            	 this.block[x][y].id = EpicarnoTiles.air;
-        	        spawnMob(new FallingTile(x*16, (y)*16, EpicarnoTiles.tileSize, EpicarnoTiles.tileSize , FallingID));
 
-             }
              placed = true;
 
 }
@@ -428,9 +430,9 @@ return EpicarnoTiles.air;
 	
 	
 	   try{
-		   this.block[x][y].setTile(new Tile(Tile)) ;
+		   this.block[x][y].setTile(new Tile(Tile,x,y)) ;
 		   if(this.block[x][(y+1)].id ==EpicarnoTiles.Grass ){
-			   this.block[x][(y+1)].setTile(new Tile(EpicarnoTiles.wizningmud));
+			   this.block[x][(y+1)].setTile(new Tile(EpicarnoTiles.wizningmud,x,y));
 		   }
 	   }
 	   catch(ArrayIndexOutOfBoundsException exception) {
@@ -472,17 +474,50 @@ System.out.println("[WARN] Block out of bounds");
    
    public   void render(Graphics g, int camX, int camY, int renW, int renH)
    {
+	   
+	     for (int x = camX / EpicarnoTiles.tileSize; x < camX / EpicarnoTiles.tileSize + renW; x++) {
+	         for (int y = camY / EpicarnoTiles.tileSize; y < camY / EpicarnoTiles.tileSize + renH; y++) {
+	           if ((x > 0) && (y > 0) && (x < worldW) && (y < worldH) && 
+	             (this.block[x][y].contains(new Point(EpicarnoComp.mse.x / EpicarnoComp.pixelSize + (int)EpicarnoComp.sX, EpicarnoComp.mse.y / EpicarnoComp.pixelSize + (int)EpicarnoComp.sY))))
+	           {
+	        	   int[] sid = Inventory.invBar[Inventory.soming].id;
+	        	   if( ((this.block[x][(y + 1)].id  != EpicarnoTiles.air) || (this.block[x][(y - 1)].id  != EpicarnoTiles.air) || (this.block[(x + 1)][(y)].id  != EpicarnoTiles.air) || (this.block[(x - 1)][(y)].id  != EpicarnoTiles.air)) && ((this.block[x][(y + 1)].id  != EpicarnoTiles.bedrock) || (this.block[x][(y - 1)].id  != EpicarnoTiles.bedrock) || (this.block[(x + 1)][(y)].id  != EpicarnoTiles.bedrock) || (this.block[(x - 1)][(y)].id  != EpicarnoTiles.bedrock))){
+	                   this.block[x][y].fakerender(g, sid);;
+	                   
+
+	                   //placed = true;
+
+	      }
+	       
+	           }
+	         }
+	           }
+	
      for (int x = camX / EpicarnoTiles.tileSize; x < camX / EpicarnoTiles.tileSize + renW; x++) {
        for (int y = camY / EpicarnoTiles.tileSize; y < camY / EpicarnoTiles.tileSize + renH; y++) {
          if ((x >= 0) && (y >= 0) && (x < worldW) && (y < worldH))
          {
+        	 
+          
            this.block[x][y].render(g);
+           
+      
+           
+           //should move tick later
+           this.block[x][y].tick();
            if ((this.block[x][y].id != EpicarnoTiles.air) && (this.block[x][y].id != EpicarnoTiles.bedrock) && (!Inventory.isOpen) && 
              (this.block[x][y].contains(new Point(EpicarnoComp.mse.x / EpicarnoComp.pixelSize + (int)EpicarnoComp.sX, EpicarnoComp.mse.y / EpicarnoComp.pixelSize + (int)EpicarnoComp.sY))))
            {
         	//   if(placed == false){
-             g.setColor(new Color(255, 255, 255, 60));
-          g.fillRect(this.block[x][y].x - camX, this.block[x][y].y - camY, this.block[x][y].width, this.block[x][y].height);
+        	   Graphics2D g2 = (Graphics2D) g;
+             g.setColor(new Color(61, 61, 61, 200));
+             float thickness = 2;
+             Stroke oldStroke = g2.getStroke();
+             g2.setStroke(new BasicStroke(thickness));
+            // g2.drawRect(x, y, width, height);
+             g2.drawRect(this.block[x][y].x - camX+1, this.block[x][y].y - camY+1, this.block[x][y].width-2, this.block[x][y].height-2);
+
+             g2.setStroke(oldStroke);
         	   //}
            }
          }
